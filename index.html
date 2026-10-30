@@ -787,7 +787,12 @@ background:rgba(150,190,225,.16);
   z-index: 10;
 }
 
-#weekDropdown,
+/* منع قائمة المواد من تغطية قائمة الأسابيع */
+#weekDropdown {
+  position: relative;
+  z-index: 30;
+}
+
 #subjectDropdown {
   position: relative;
   z-index: 20;
