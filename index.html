@@ -1,0 +1,2433 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#5146e5">
+<title>فصل أولى سادس | مكتبة الفصل</title>
+<style>
+:root{
+ color-scheme:light;
+ --bg:#eef0ff;
+ --paper:rgba(255,255,255,.62);
+ --ink:#20213b;
+ --muted:#6d728c;
+ --brand:#3979b9;
+ --line:rgba(255,255,255,.75);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+[hidden]{display:none!important}
+body{
+ margin:0;
+background:
+ radial-gradient(circle at 15% 20%,#c5d9ff 0%,transparent 35%),
+ radial-gradient(circle at 85% 65%,#b8e5f2 0%,transparent 35%),
+ radial-gradient(circle at 50% 100%,#dce5ff 0%,transparent 40%),
+ #edf3fa;
+ background-attachment:fixed;
+ color:var(--ink);
+ font-family:Tahoma,Arial,sans-serif;
+ line-height:1.65;
+}
+.splash{
+ position:fixed;
+ inset:0;
+ z-index:9999;
+ display:grid;
+ place-items:center;
+ padding:24px;
+ text-align:center;
+ color:#fff;
+ background:linear-gradient(-45deg,#183653,#326b96,#65a9c9,#b8dced);
+ background-size:400% 400%;
+ animation:splash-bg 12s ease infinite;
+ overflow:hidden;
+}
+
+.splash::before,
+.splash::after{
+ content:"";
+ position:absolute;
+ width:280px;
+ height:280px;
+ border-radius:50%;
+ background:#ffffff20;
+ filter:blur(8px);
+ animation:float 8s ease-in-out infinite alternate;
+ pointer-events:none;
+}
+
+.splash::before{
+ top:8%;
+ right:8%;
+}
+
+.splash::after{
+ bottom:5%;
+ left:8%;
+ animation-delay:2s;
+}
+
+@keyframes splash-bg{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
+
+@keyframes float{
+ from{transform:translate(0,0) scale(1)}
+ to{transform:translate(35px,-25px) scale(1.2)}
+}
+
+.splash-content{
+ animation:splash-pop .8s ease both;
+}
+
+.splash-logo{
+ display:grid;
+ place-items:center;
+ width:100px;
+ height:100px;
+ margin:0 auto 22px;
+ border:1px solid #ffffff70;
+ border-radius:28px;
+ background:#ffffff20;
+ box-shadow:0 12px 40px #17134b45;
+ font-size:48px;
+}
+
+.splash h1{
+ margin:0 0 12px;
+ font-size:clamp(25px,6vw,42px);
+}
+
+.splash p{
+ margin:0 0 28px;
+ color:#f0f2ff;
+ font-size:16px;
+}
+
+.start-btn{
+ padding:13px 38px;
+ border:0;
+ border-radius:13px;
+ background:white;
+ color:#5146e5;
+ font-size:17px;
+ font-weight:bold;
+ cursor:pointer;
+ box-shadow:0 8px 25px #17134b45;
+ transition:transform .2s,background .2s;
+}
+
+
+.start-btn:hover{
+ transform:translateY(-3px);
+ background:#5146e5;
+ color:white;
+ box-shadow:0 8px 25px #17134b45;
+}
+
+.splash.is-hidden{
+ display:none;
+}
+
+@keyframes splash-pop{
+ from{opacity:0;transform:translateY(18px)}
+ to{opacity:1;transform:translateY(0)}
+}
+.sidebar{position:fixed;z-index:20;right:0;top:0;bottom:0;width:72px;padding:14px 9px;background:var(--paper);border-left:1px solid var(--line);box-shadow:-5px 0 20px #2222;display:flex;flex-direction:column;align-items:center;gap:9px;transition:width .2s}
+.sidebar.expanded{width:220px;align-items:stretch}
+.brand{height:48px;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:35px}
+.brand-mark{display:grid;place-items:center;width:34px;height:34px;border:1.5px solid var(--brand);border-radius:11px;color:var(--brand);font-size:18px;font-weight:800}
+.nav-link,.toggle{min-height:50px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:9px;border:0;border-radius:12px;background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;font:inherit}
+.nav-link:hover,.toggle:hover,.nav-link.active{
+ background:rgba(190,215,245,.55);
+ color:#294d78;
+}
+.nav-link{transition:background .15s ease,color .15s ease}
+.nav-link:focus-visible,.toggle:focus-visible{outline:3px solid #8b83ff;outline-offset:2px}
+.icon{width:28px;flex:0 0 28px;text-align:center;font-size:23px;font-weight:600;line-height:1}
+.nav-label{display:none;white-space:nowrap;font-size:14px;font-weight:bold}
+.sidebar.expanded .brand{justify-content:flex-start;padding:0 8px;font-size:17px;font-weight:bold}
+.sidebar.expanded .nav-link,.sidebar.expanded .toggle{justify-content:flex-start}
+.sidebar.expanded .nav-label{display:inline}
+.spacer{flex:1}
+.toggle{border-top:1px solid var(--line);border-radius:0;padding-top:14px}
+.page{margin-right:72px;transition:margin-right .2s}
+body.expanded .page{margin-right:220px}
+
+.hero{
+ position:relative;
+ overflow:hidden;
+ padding:48px 20px;
+ color:white;
+ background:linear-gradient(125deg,#183653,#285d83 45%,#397fa8 78%,#75b8d3);
+ border-bottom:1px solid #ffffff35;
+ box-shadow:0 12px 35px #30266e35;
+}
+
+.hero::before{
+ content:"";
+ position:absolute;
+ width:250px;
+ height:250px;
+ border-radius:50%;
+ background:#ffffff15;
+ filter:blur(3px);
+ top:-130px;
+ right:10%;
+ pointer-events:none;
+}
+
+.hero::after{
+ content:"";
+ position:absolute;
+ width:200px;
+ height:200px;
+ border-radius:50%;
+ background:#ffffff12;
+ filter:blur(5px);
+ bottom:-130px;
+ left:15%;
+ pointer-events:none;
+}
+
+.hero-inner{
+ position:relative;
+ z-index:1;
+}
+
+.hero-inner,.wrap{
+ width:min(1250px,100%);
+ margin:auto;
+}
+.hero h1{margin:0 0 8px;font-size:clamp(27px,5vw,40px)}
+.hero p{margin:0;color:#e6e9ff}
+.theme{
+ margin-top:20px;
+ padding:13px 24px;
+ min-width:180px;
+ min-height:50px;
+ border:1px solid rgba(255,255,255,.55);
+ border-radius:15px;
+ background:rgba(255,255,255,.16);
+ color:white;
+ font:inherit;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+ backdrop-filter:blur(16px) saturate(160%);
+ -webkit-backdrop-filter:blur(16px) saturate(160%);
+ box-shadow:0 8px 25px rgba(15,45,75,.18);
+ transition:transform .25s,background .25s,box-shadow .25s;
+}
+
+
+.theme:hover{
+ transform:translateY(-3px);
+ background:rgba(255,255,255,.3);
+ box-shadow:0 12px 28px rgba(15,45,75,.25);
+}
+
+.wrap{padding:22px 16px 32px}
+.panel,.item{
+ background:rgba(255,255,255,.58);
+ backdrop-filter:blur(18px);
+ -webkit-backdrop-filter:blur(18px);
+ border:1px solid rgba(255,255,255,.8);
+ border-radius:20px;
+ padding:18px;
+ margin-bottom:16px;
+ box-shadow:0 8px 32px rgba(49,46,129,.09);
+}
+h2{font-size:20px;margin:0 0 12px}
+h3{font-size:17px;margin:0 0 5px}
+.muted{font-size:13px;color:var(--muted);margin:5px 0}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+select{width:100%;min-height:44px;padding:10px;border:1px solid #d8dced;border-radius:10px;background:white;color:#20213b;font:inherit}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.teacher{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:14px}
+/* ألوان المدرسين */
+
+/* ===== ألوان زجاجية للأقسام ===== */
+
+/* ===== ألوان موحدة للأقسام ===== */
+
+#teachers .teacher,
+#numbers .teacher{
+ background:rgba(255,255,255,.38);
+ border:1px solid rgba(255,255,255,.8);
+}
+
+#teachers .teacher h3,
+#numbers .teacher h3{
+ color:#294d78;
+}
+
+#numbers .teacher p{
+ color:#647b96;
+}
+
+#timetable{
+ background:rgba(224,237,250,.38);
+ border:1px solid rgba(255,255,255,.8);
+}
+
+#timetable th{
+ background:rgba(190,215,240,.55);
+ color:#294d78;
+}
+
+#timetable td{
+ background:rgba(255,255,255,.32);
+}
+
+#files .item{
+ background:rgba(255,255,255,.38);
+ border:1px solid rgba(255,255,255,.8);
+}
+
+#files .tag{
+ background:rgba(205,225,248,.65);
+ color:#315b89;
+}
+
+.avatar{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:13px;background:#eeecff;font-size:21px}
+.teacher p{margin:0;color:var(--muted);font-size:13px}
+.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.item{margin:0;min-width:0}
+.tag{display:inline-block;padding:3px 9px;margin-bottom:8px;border-radius:99px;background:#eeecff;color:#3730a3;font-size:12px}
+a{color:#4338ca;font-weight:bold;overflow-wrap:anywhere}
+#numbers a{
+ display:inline-block;
+ color:#16834f;
+ text-decoration:none;
+ transition:color .2s,transform .2s;
+}
+
+#numbers a:hover{
+ color:#0b5c35;
+ text-decoration:underline;
+ transform:translateY(-2px);
+}
+
+.count{color:var(--muted);font-size:13px}
+.empty{padding:22px;text-align:center;border:1px dashed #c9cfe4;border-radius:14px;color:var(--muted)}
+.timetable-head{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:right;border:0;background:transparent;color:var(--ink);font:inherit;font-size:20px;font-weight:bold;cursor:pointer;padding:5px}
+.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0}
+.days button{width:100%;min-width:0;min-height:42px;padding:9px 5px;border:0;border-radius:9px;background:#eeecff;color:#3730a3;cursor:pointer;font:inherit;font-size:clamp(12px,1.25vw,15px);font-weight:600;white-space:nowrap}
+.days button{
+ transition:transform .2s,background .2s,box-shadow .2s;
+}
+
+.days button:hover{
+ background:rgba(190,220,245,.7);
+ transform:translateY(-3px);
+ box-shadow:0 6px 15px rgba(49,91,137,.15);
+}
+.days button.active{background:var(--brand);color:white}
+.table-wrap{overflow-x:auto}
+table{width:100%;min-width:480px;border-collapse:collapse;text-align:right}
+th,td{padding:10px;border-bottom:1px solid var(--line)}
+th{background:#eeecff;color:#3730a3}
+footer{text-align:center;padding:20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+
+@media(max-width:760px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .items{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+ .sidebar{width:58px;padding:10px 5px;gap:7px}
+ .sidebar.expanded{width:min(210px,82vw);align-items:stretch}
+ .page,body.expanded .page{margin-right:58px}
+ body.expanded::after{content:"";position:fixed;inset:0;z-index:25;background:#1118}
+ .hero{padding:24px 12px;text-align:center}
+ .hero h1{font-size:27px}
+ .hero p{font-size:13px}
+ .wrap{width:100%;padding:13px 9px 24px}
+ .panel,.item{padding:13px;border-radius:14px}
+ .filters,.grid,.items{grid-template-columns:1fr}
+ .nav-link,.toggle{min-height:48px;padding:8px 6px}
+ .icon{font-size:21px}
+ .sidebar.expanded .nav-link,.sidebar.expanded .toggle{padding:9px 10px}
+ .days{gap:5px;margin:10px 0}
+ .days button{min-height:40px;padding:8px 2px;font-size:clamp(10px,3vw,12px);border-radius:8px}
+ .table-wrap{margin-inline:-2px}
+ table{min-width:450px}
+ th,td{padding:9px 8px;font-size:13px}
+}
+/* تأثير الزجاج */
+
+/* ===== Glassmorphism ===== */
+
+.sidebar{
+ background:rgba(255,255,255,.28);
+ backdrop-filter:blur(25px) saturate(160%);
+ -webkit-backdrop-filter:blur(25px) saturate(160%);
+ border-left:1px solid rgba(255,255,255,.65);
+ box-shadow:-8px 0 35px rgba(45,35,120,.12);
+}
+
+.panel,
+.item,
+.teacher{
+ backdrop-filter:blur(22px) saturate(160%);
+ -webkit-backdrop-filter:blur(22px) saturate(160%);
+ box-shadow:0 10px 35px rgba(55,45,130,.10);
+}
+
+.panel{
+ background:rgba(255,255,255,.38);
+ border:1px solid rgba(255,255,255,.75);
+}
+
+.avatar{
+ background:rgba(255,255,255,.5);
+ border:1px solid rgba(255,255,255,.8);
+}
+
+
+/* ===== الوضع الليلي الزجاجي ===== */
+
+:root[data-theme="dark"]{
+ color-scheme:dark;
+ --bg:#101b2b;
+ --paper:rgba(110,155,195,.10);
+ --ink:#edf6ff;
+ --muted:#b0c5d9;
+ --brand:#80c5ed;
+ --line:rgba(210,230,255,.18);
+}
+
+/* خلفية الموقع */
+:root[data-theme="dark"] body{
+ background:
+  radial-gradient(ellipse at 10% 10%,rgba(75,140,195,.22),transparent 45%),
+  radial-gradient(ellipse at 90% 85%,rgba(65,115,175,.20),transparent 45%),
+  #101b2b;
+ color:var(--ink);
+}
+
+/* البطاقات الزجاجية */
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .item,
+:root[data-theme="dark"] .teacher{
+background:rgba(150,190,225,.16);
+ backdrop-filter:blur(22px) saturate(160%);
+ -webkit-backdrop-filter:blur(22px) saturate(160%);
+ border:1px solid rgba(210,230,255,.20);
+ box-shadow:
+  0 10px 35px rgba(0,0,0,.18),
+  inset 0 1px 0 rgba(255,255,255,.07);
+ color:var(--ink);
+}
+
+/* المدرسين والأرقام */
+:root[data-theme="dark"] #teachers .teacher,
+:root[data-theme="dark"] #numbers .teacher{
+ background:rgba(150,190,225,.09);
+ border-color:rgba(210,230,255,.20);
+}
+
+:root[data-theme="dark"] #teachers .teacher h3,
+:root[data-theme="dark"] #numbers .teacher h3,
+:root[data-theme="dark"] #numbers .teacher p{
+ color:#e5f2ff;
+}
+
+/* الأيقونات */
+:root[data-theme="dark"] .avatar{
+ background:rgba(150,190,225,.16);
+ border:1px solid rgba(210,230,255,.2);
+}
+
+/* القائمة الجانبية */
+:root[data-theme="dark"] .sidebar{
+ background:rgba(35,60,85,.38);
+ backdrop-filter:blur(25px) saturate(160%);
+ -webkit-backdrop-filter:blur(25px) saturate(160%);
+ border-color:rgba(210,230,255,.18);
+ box-shadow:-8px 0 35px rgba(0,0,0,.18);
+}
+
+:root[data-theme="dark"] .nav-link,
+:root[data-theme="dark"] .toggle{
+ color:#e5f2ff;
+}
+
+:root[data-theme="dark"] .nav-link:hover,
+:root[data-theme="dark"] .toggle:hover,
+:root[data-theme="dark"] .nav-link.active{
+ background:rgba(150,190,225,.16);
+ color:#fff;
+}
+
+/* جدول الحصص */
+:root[data-theme="dark"] #timetable{
+ background:rgba(150,190,225,.08);
+ border-color:rgba(210,230,255,.18);
+}
+
+:root[data-theme="dark"] #timetable th{
+ background:rgba(130,180,220,.18);
+ color:#edf6ff;
+}
+
+:root[data-theme="dark"] #timetable td{
+ background:rgba(150,190,225,.07);
+ color:#e0efff;
+ border-color:rgba(210,230,255,.13);
+}
+
+/* أزرار الأيام */
+:root[data-theme="dark"] .days button{
+ background:rgba(130,180,220,.13);
+ color:#e0efff;
+}
+
+:root[data-theme="dark"] .days button:hover{
+ background:rgba(150,195,230,.25);
+}
+
+:root[data-theme="dark"] .days button.active{
+ background:#3979b9;
+ color:white;
+}
+
+/* الفلاتر */
+:root[data-theme="dark"] select{
+ background:rgba(100,145,185,.15);
+ color:#edf6ff;
+ border-color:rgba(210,230,255,.2);
+}
+
+/* ملفات التقييمات */
+:root[data-theme="dark"] #files .tag,
+:root[data-theme="dark"] .tag{
+ background:rgba(130,180,220,.17);
+ color:#c8e6ff;
+}
+
+/* الروابط */
+:root[data-theme="dark"] a{
+ color:#9ed5ff;
+}
+
+:root[data-theme="dark"] #numbers a:hover{
+ color:#d3edff;
+}
+
+/* الرسائل والفوتر */
+:root[data-theme="dark"] .empty{
+ border-color:rgba(210,230,255,.25);
+ color:var(--muted);
+}
+
+:root[data-theme="dark"] footer{
+ border-color:rgba(210,230,255,.15);
+}
+
+/* زر تبديل الوضع */
+:root[data-theme="dark"] .theme{
+ background:rgba(150,190,225,.13);
+ border-color:rgba(210,230,255,.3);
+ color:#e5f2ff;
+ backdrop-filter:blur(16px) saturate(160%);
+ -webkit-backdrop-filter:blur(16px) saturate(160%);
+ box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+:root[data-theme="dark"] .theme:hover{
+ background:rgba(150,190,225,.25);
+ border-color:rgba(210,235,255,.5);
+}
+/* حركة هادئة لخلفية الوضع الليلي */
+:root[data-theme="dark"] body{
+  background-size:200% 200%;
+  animation: darkBgMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes darkBgMove{
+  0%{
+    background-position:0% 0%;
+  }
+  100%{
+    background-position:100% 100%;
+  }
+}
+:root[data-theme="dark"] #numbers a {
+  color: #7dd3fc;
+}
+
+:root[data-theme="dark"] #numbers a:hover {
+  color: #ffffff;
+}
+/* Hover لفتح ملفات PDF في الوضعين */
+#files a {
+  transition: color .3s ease, text-shadow .3s ease;
+}
+
+#files a:hover {
+  color: #2563eb;
+  text-shadow: 0 0 8px rgba(37, 99, 235, .3);
+}
+
+/* الوضع الليلي */
+:root[data-theme="dark"] #files a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(125, 211, 252, .7);
+}
+/* ===== تحسين فلاتر التقييمات ===== */
+
+.filters select{
+  min-height:50px;
+  padding:11px 15px;
+  border:1px solid rgba(100,145,190,.3);
+  border-radius:14px;
+  background:rgba(255,255,255,.55);
+  color:#294d78;
+  font:inherit;
+  font-weight:600;
+  cursor:pointer;
+  outline:none;
+  box-shadow:0 5px 16px rgba(45,75,120,.07);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+/* عند مرور الماوس */
+.filters select:hover{
+  transform:translateY(-3px);
+  border-color:#6ba9d6;
+  background:rgba(220,240,255,.75);
+  box-shadow:0 9px 22px rgba(45,100,150,.15);
+}
+
+/* عند اختيار الفلتر */
+.filters select:focus{
+  border-color:#3979b9;
+  box-shadow:0 0 0 3px rgba(57,121,185,.18);
+}
+
+/* ===== الوضع الليلي ===== */
+
+:root[data-theme="dark"] .filters select{
+  background:rgba(130,175,215,.15);
+  color:#edf6ff;
+  border-color:rgba(210,230,255,.22);
+  box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+
+:root[data-theme="dark"] .filters select:hover{
+  background:rgba(130,185,230,.28);
+  border-color:rgba(150,210,255,.55);
+  box-shadow:0 9px 24px rgba(0,0,0,.2);
+}
+
+:root[data-theme="dark"] .filters select:focus{
+  border-color:#80c5ed;
+  box-shadow:0 0 0 3px rgba(128,197,237,.2);
+}
+
+/* خيارات القائمة في الوضع الليلي */
+:root[data-theme="dark"] .filters select option{
+  background:#20354b;
+  color:#edf6ff;
+}
+/* ===== القوائم المخصصة ===== */
+
+.custom-filter{
+ position:relative;
+ min-width:0;
+}
+
+.custom-filter button{
+ width:100%;
+ min-height:50px;
+ padding:11px 15px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ border:1px solid rgba(100,145,190,.3);
+ border-radius:14px;
+ background:rgba(255,255,255,.55);
+ color:#294d78;
+ font:inherit;
+ font-weight:600;
+ cursor:pointer;
+ backdrop-filter:blur(15px);
+ -webkit-backdrop-filter:blur(15px);
+ transition:.25s ease;
+}
+
+.custom-filter button:hover,
+.custom-filter button.open{
+ transform:translateY(-2px);
+ border-color:#6ba9d6;
+ background:rgba(220,240,255,.8);
+ box-shadow:0 7px 20px rgba(45,100,150,.13);
+}
+
+.custom-filter button .arrow{
+ transition:transform .25s;
+}
+
+.custom-filter button.open .arrow{
+ transform:rotate(180deg);
+}
+
+.custom-options{
+ position:absolute;
+ top:calc(100% + 9px);
+ right:0;
+ left:0;
+ z-index:100;
+ padding:7px;
+ border:1px solid rgba(100,145,190,.3);
+ border-radius:15px;
+ background:rgba(245,250,255,.94);
+ backdrop-filter:blur(20px);
+ -webkit-backdrop-filter:blur(20px);
+ box-shadow:0 12px 30px rgba(30,65,100,.15);
+ max-height:230px;
+ overflow-y:auto;
+ opacity:0;
+ visibility:hidden;
+ transform:translateY(-7px);
+ transition:.2s ease;
+}
+
+.custom-filter.active .custom-options{
+ opacity:1;
+ visibility:visible;
+ transform:translateY(0);
+}
+
+.custom-options button{
+ min-height:40px;
+ padding:9px 12px;
+ margin-bottom:4px;
+ border:1px solid transparent;
+ border-radius:9px;
+ background:transparent;
+ color:#294d78;
+ font-size:14px;
+ font-weight:normal;
+ text-align:right;
+ box-shadow:none;
+ transform:none;
+}
+
+.custom-options button:not(:last-child){
+ border-bottom:1px solid rgba(100,145,190,.18);
+}
+
+.custom-options button:hover{
+ background:rgba(120,175,220,.18);
+ border-color:rgba(80,145,200,.35);
+ transform:none;
+ box-shadow:none;
+}
+
+.custom-options button.selected{
+ background:rgba(57,121,185,.18);
+ border-color:rgba(57,121,185,.4);
+ color:#245d91;
+ font-weight:bold;
+}
+
+/* الوضع الليلي */
+
+:root[data-theme="dark"] .custom-filter > button{
+ background:rgba(130,175,215,.15);
+ color:#edf6ff;
+ border-color:rgba(210,230,255,.22);
+}
+
+:root[data-theme="dark"] .custom-filter > button:hover,
+:root[data-theme="dark"] .custom-filter > button.open{
+ background:rgba(130,185,230,.28);
+ border-color:#80c5ed;
+}
+
+:root[data-theme="dark"] .custom-options{
+ background:rgba(25,45,65,.96);
+ border-color:rgba(210,230,255,.2);
+ box-shadow:0 12px 30px rgba(0,0,0,.3);
+}
+
+:root[data-theme="dark"] .custom-options button{
+ color:#e5f2ff;
+}
+
+:root[data-theme="dark"] .custom-options button:not(:last-child){
+ border-bottom-color:rgba(210,230,255,.13);
+}
+
+:root[data-theme="dark"] .custom-options button:hover{
+ background:rgba(130,185,230,.2);
+ border-color:rgba(150,210,255,.35);
+}
+
+:root[data-theme="dark"] .custom-options button.selected{
+ background:rgba(57,121,185,.35);
+ border-color:#80c5ed;
+ color:white;
+}
+.filters {
+  position: relative;
+  z-index: 10;
+}
+
+#weekDropdown,
+#subjectDropdown {
+  position: relative;
+  z-index: 20;
+}
+/* إظهار قوائم الفلاتر فوق الأقسام التالية */
+#files {
+  position: relative;
+  z-index: 50;
+}
+/* ===== تحسينات الموبايل ===== */
+
+@media (max-width: 600px) {
+
+  /* القائمة الجانبية */
+  .sidebar {
+    z-index: 100;
+  }
+
+  body.expanded::after {
+    z-index: 25;
+  }
+
+  /* الفلاتر */
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  #weekDropdown,
+  #subjectDropdown {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* منع خروج المحتوى عن الشاشة */
+  .page,
+  .wrap,
+  .panel {
+    max-width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* المسافات */
+  .panel {
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 19px;
+  }
+}
+/* ===== تحسين الزجاج في الوضع الليلي ===== */
+
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .item,
+:root[data-theme="dark"] .teacher {
+  background: rgba(25, 43, 65, .82);
+  border: 1px solid rgba(160, 195, 225, .16);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+:root[data-theme="dark"] #teachers .teacher,
+:root[data-theme="dark"] #numbers .teacher {
+  background: rgba(30, 52, 76, .72);
+  border-color: rgba(160, 195, 225, .14);
+}
+
+:root[data-theme="dark"] .sidebar {
+  background: rgba(18, 32, 49, .92);
+  border-left-color: rgba(160, 195, 225, .15);
+  box-shadow: -6px 0 25px rgba(0, 0, 0, .25);
+}
+
+:root[data-theme="dark"] .avatar {
+  background: rgba(100, 145, 185, .18);
+  border-color: rgba(160, 195, 225, .18);
+}
+
+:root[data-theme="dark"] .custom-options {
+  background: rgba(22, 39, 58, .98);
+  border-color: rgba(160, 195, 225, .2);
+}
+
+:root[data-theme="dark"] .custom-filter > button {
+  background: rgba(35, 57, 80, .75);
+}
+
+:root[data-theme="dark"] .custom-filter > button:hover,
+:root[data-theme="dark"] .custom-filter > button.open {
+  background: rgba(50, 80, 110, .9);
+}
+/* زيادة المسافات في قسم التقييمات */
+#files h3 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#files .filters {
+  margin-bottom: 25px;
+}
+/* ===== تحسين ألوان التقييمات في الوضع الليلي ===== */
+
+/* خلفية بطاقات التقييمات */
+:root[data-theme="dark"] #files .item {
+  background: rgba(39, 56, 79, .88);
+  border: 1px solid rgba(160, 195, 225, .22);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .18);
+}
+
+/* اسم المادة */
+:root[data-theme="dark"] #files .tag {
+  background: rgba(100, 170, 220, .18);
+  color: #a9dcff;
+  border: 1px solid rgba(125, 190, 235, .18);
+}
+
+/* عنوان التقييم */
+:root[data-theme="dark"] #files .item h3 {
+  color: #f0f6ff;
+}
+
+/* تفاصيل الأسبوع */
+:root[data-theme="dark"] #files .item .muted {
+  color: #b7c9dc;
+}
+
+/* رابط فتح الملف */
+:root[data-theme="dark"] #files .item a {
+  color: #7dd3fc;
+}
+
+:root[data-theme="dark"] #files .item a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(125, 211, 252, .5);
+}
+
+/* عدد الملفات */
+:root[data-theme="dark"] #files .count {
+  color: #b7c9dc;
+}
+
+/* رسالة عدم وجود ملفات */
+:root[data-theme="dark"] #files .empty {
+  background: rgba(39, 56, 79, .45);
+  border-color: rgba(160, 195, 225, .25);
+  color: #b7c9dc;
+}
+/* ===== Pink Dark Theme ===== */
+
+/* خلفية بطاقات التقييمات */
+:root[data-theme="dark"] #files .item {
+  background: linear-gradient(145deg, #30243a, #251e31);
+  border: 1px solid rgba(244, 143, 177, .2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .2);
+  transition: .3s ease;
+}
+
+/* تأثير عند الوقوف على البطاقة */
+:root[data-theme="dark"] #files .item:hover {
+  border-color: rgba(244, 143, 177, .55);
+  box-shadow: 0 8px 25px rgba(244, 143, 177, .1);
+}
+
+/* اسم المادة */
+:root[data-theme="dark"] #files .tag {
+  background: rgba(244, 143, 177, .14);
+  color: #ffabc8;
+  border: 1px solid rgba(244, 143, 177, .25);
+}
+
+/* عنوان التقييم */
+:root[data-theme="dark"] #files .item h3 {
+  color: #fff0f5;
+}
+
+/* تفاصيل الأسبوع */
+:root[data-theme="dark"] #files .item .muted {
+  color: #cbb8ce;
+}
+
+/* رابط فتح الملف */
+:root[data-theme="dark"] #files .item a {
+  color: #ff91b8;
+  transition: .2s ease;
+}
+
+:root[data-theme="dark"] #files .item a:hover {
+  color: #ffc1d7;
+  text-shadow: 0 0 10px rgba(255, 145, 184, .4);
+}
+
+/* عدد الملفات */
+:root[data-theme="dark"] #files .count {
+  color: #e5b8ce;
+}
+
+/* رسالة عدم وجود ملفات */
+:root[data-theme="dark"] #files .empty {
+  background: rgba(48, 36, 58, .55);
+  border-color: rgba(244, 143, 177, .2);
+  color: #e5c9d8;
+}
+
+/* ===== PREMIUM DARK EXPERIENCE ===== */
+
+:root[data-theme="dark"] body {
+  background-color: #080d1b;
+  background-image:
+    radial-gradient(ellipse at 12% 8%, rgba(75, 91, 220, .25), transparent 38%),
+    radial-gradient(ellipse at 88% 28%, rgba(126, 65, 190, .20), transparent 38%),
+    radial-gradient(ellipse at 50% 100%, rgba(24, 111, 170, .19), transparent 45%);
+  background-size: 160% 160%;
+  background-attachment: fixed;
+  animation: premiumGlow 22s ease-in-out infinite alternate;
+  color: #f1f4ff;
+}
+
+@keyframes premiumGlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 35%;
+  }
+  100% {
+    background-position: 30% 100%;
+  }
+}
+
+/* Hero section */
+:root[data-theme="dark"] .hero {
+  background: linear-gradient(
+    125deg,
+    rgba(35, 48, 105, .94),
+    rgba(83, 48, 130, .88),
+    rgba(20, 91, 135, .92)
+  );
+  border: 1px solid rgba(255, 255, 255, .13);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, .28);
+}
+
+/* Glass effect */
+:root[data-theme="dark"] .item,
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .glass {
+  background: rgba(255, 255, 255, .055);
+  border: 1px solid rgba(255, 255, 255, .10);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, .16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Smooth hover */
+:root[data-theme="dark"] .item,
+:root[data-theme="dark"] .card {
+  transition: transform .25s ease, border-color .25s ease,
+              box-shadow .25s ease;
+}
+
+:root[data-theme="dark"] .item:hover,
+:root[data-theme="dark"] .card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(125, 150, 255, .38);
+  box-shadow: 0 16px 38px rgba(35, 65, 160, .17);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="dark"] body {
+    animation: none;
+  }
+
+  :root[data-theme="dark"] .item,
+  :root[data-theme="dark"] .card {
+    transition: none;
+  }
+}
+
+/* =====================================
+   PREMIUM EDUCATION DASHBOARD
+   Complete Visual Upgrade
+===================================== */
+
+/* Smooth global transitions */
+body,
+.panel,
+.item,
+.teacher,
+.sidebar,
+.hero,
+.custom-filter > button,
+.days button {
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease,
+    color .35s ease,
+    transform .3s ease;
+}
+
+/* ===== DARK BACKGROUND ===== */
+
+:root[data-theme="dark"] body {
+  background-color: #090d1b;
+  background-image:
+    radial-gradient(ellipse at 8% 12%, rgba(78, 91, 220, .25), transparent 38%),
+    radial-gradient(ellipse at 92% 30%, rgba(139, 75, 205, .19), transparent 38%),
+    radial-gradient(ellipse at 48% 100%, rgba(25, 126, 175, .18), transparent 42%);
+  background-size: 180% 180%;
+  background-attachment: fixed;
+  animation: premiumBackground 24s ease-in-out infinite alternate;
+  color: #f2f5ff;
+}
+
+@keyframes premiumBackground {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
+}
+
+/* ===== HERO ===== */
+
+.hero {
+  background: linear-gradient(125deg, #142b50, #354a91 55%, #65458e);
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 18px 45px rgba(35, 48, 105, .20);
+}
+
+:root[data-theme="dark"] .hero {
+  background: linear-gradient(125deg, #111d3b, #303b79 55%, #55356f);
+  box-shadow: 0 18px 55px rgba(0,0,0,.28);
+}
+
+.hero h1 {
+  letter-spacing: -.7px;
+  text-shadow: 0 3px 18px rgba(0,0,0,.15);
+}
+
+/* ===== MAIN PANELS ===== */
+
+.panel {
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.75);
+  box-shadow: 0 12px 35px rgba(43, 55, 110, .09);
+  background: rgba(255,255,255,.48);
+}
+
+:root[data-theme="dark"] .panel {
+  background: rgba(22, 31, 57, .70);
+  border-color: rgba(175,190,255,.14);
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.panel h2 {
+  position: relative;
+  padding-right: 13px;
+}
+
+.panel h2::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 4px;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #6575ee, #9b6cdb);
+}
+
+/* ===== TEACHERS ===== */
+
+.teacher {
+  border-radius: 16px;
+  background: rgba(255,255,255,.48);
+  border: 1px solid rgba(255,255,255,.8);
+  box-shadow: 0 5px 18px rgba(40,55,100,.06);
+}
+
+.teacher:hover {
+  transform: translateY(-4px);
+  border-color: rgba(100,120,220,.4);
+  box-shadow: 0 12px 25px rgba(60,75,150,.13);
+}
+
+:root[data-theme="dark"] .teacher {
+  background: rgba(40, 48, 79, .65);
+  border-color: rgba(175,190,255,.15);
+}
+
+:root[data-theme="dark"] .teacher:hover {
+  background: rgba(51, 59, 96, .8);
+  border-color: rgba(143,150,255,.45);
+}
+
+/* ===== AVATARS ===== */
+
+.avatar {
+  border-radius: 14px;
+  background: linear-gradient(145deg, #e4eaff, #f4e9ff);
+  box-shadow: 0 4px 12px rgba(70,80,150,.10);
+}
+
+:root[data-theme="dark"] .avatar {
+  background: linear-gradient(145deg, #343d70, #503b70);
+}
+
+/* ===== FILE CARDS ===== */
+
+#files .item {
+  padding: 17px;
+  border-radius: 17px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.85);
+  box-shadow: 0 7px 22px rgba(40,55,110,.07);
+}
+
+#files .item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(115,105,220,.45);
+  box-shadow: 0 14px 30px rgba(60,65,150,.13);
+}
+
+:root[data-theme="dark"] #files .item {
+  background: linear-gradient(145deg, rgba(43,46,82,.85), rgba(29,35,64,.9));
+  border-color: rgba(175,160,255,.17);
+}
+
+:root[data-theme="dark"] #files .item:hover {
+  border-color: rgba(161,140,255,.5);
+  box-shadow: 0 14px 32px rgba(0,0,0,.25);
+}
+
+.tag {
+  background: rgba(100,115,220,.12);
+  color: #4c50a5;
+  font-weight: bold;
+}
+
+:root[data-theme="dark"] .tag {
+  background: rgba(153,135,255,.16);
+  color: #d2c8ff;
+}
+
+/* ===== FILTERS ===== */
+
+.custom-filter > button {
+  border-radius: 13px;
+  min-height: 52px;
+  box-shadow: 0 5px 16px rgba(40,55,110,.07);
+}
+
+.custom-filter > button:hover,
+.custom-filter > button.open {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(65,75,155,.15);
+}
+
+:root[data-theme="dark"] .custom-filter > button {
+  background: rgba(40,48,82,.8);
+  border-color: rgba(170,180,255,.2);
+}
+
+:root[data-theme="dark"] .custom-options {
+  background: rgba(20,25,48,.98);
+}
+
+/* ===== TIMETABLE ===== */
+
+#timetable {
+  overflow: hidden;
+}
+
+#timetable th {
+  padding: 14px 10px;
+  background: rgba(90,110,210,.13);
+  color: #39477e;
+}
+
+#timetable td {
+  padding: 13px 10px;
+}
+
+:root[data-theme="dark"] #timetable th {
+  background: rgba(113,117,215,.2);
+  color: #e4e6ff;
+}
+
+:root[data-theme="dark"] #timetable td {
+  background: rgba(255,255,255,.025);
+}
+
+/* ===== DAY BUTTONS ===== */
+
+.days button {
+  border: 1px solid transparent;
+  border-radius: 11px;
+}
+
+.days button.active {
+  background: linear-gradient(120deg, #5368d9, #8662d4);
+  box-shadow: 0 6px 17px rgba(83,104,217,.25);
+}
+
+:root[data-theme="dark"] .days button.active {
+  background: linear-gradient(120deg, #6479f0, #9569d8);
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+  box-shadow: -8px 0 35px rgba(40,45,100,.12);
+}
+
+.brand-mark {
+  border-radius: 12px;
+  background: rgba(100,110,220,.10);
+}
+
+.nav-link {
+  border-radius: 13px;
+  transition: .25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(105,120,220,.13);
+  color: #4655a9;
+  transform: translateX(-2px);
+}
+
+:root[data-theme="dark"] .nav-link:hover,
+:root[data-theme="dark"] .nav-link.active {
+  background: rgba(130,135,230,.18);
+  color: #e0dcff;
+}
+
+/* ===== THEME BUTTON ===== */
+
+.theme {
+  border-radius: 14px;
+}
+
+.theme:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== LINKS ===== */
+
+a {
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+#files a {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 5px 0;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+  opacity: .85;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+  .panel {
+    border-radius: 17px;
+  }
+
+  #files .item {
+    padding: 15px;
+  }
+
+  .teacher:hover,
+  #files .item:hover {
+    transform: none;
+  }
+}
+
+/* Respect reduced motion settings */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="dark"] body {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+}
+/* نافذة عرض صور التقييم */
+.image-modal{
+ position:fixed;
+ inset:0;
+ z-index:10000;
+ display:none;
+ overflow-y:auto;
+ padding:25px 12px;
+ background:rgba(10,18,35,.88);
+ backdrop-filter:blur(10px);
+}
+
+.image-modal.active{
+ display:block;
+}
+
+.image-modal-content{
+ width:min(850px,100%);
+ margin:auto;
+ padding:18px;
+ border-radius:18px;
+ background:#fff;
+ color:#20213b;
+}
+
+.image-modal-header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ margin-bottom:15px;
+}
+
+.image-modal-header button{
+ border:0;
+ border-radius:10px;
+ padding:9px 15px;
+ background:#3979b9;
+ color:white;
+ cursor:pointer;
+ font:inherit;
+}
+
+.image-modal img{
+ display:block;
+ width:100%;
+ height:auto;
+ margin:0 auto 15px;
+ border-radius:10px;
+ border:1px solid #ddd;
+}
+
+:root[data-theme="dark"] .image-modal-content{
+ background:#1b2940;
+ color:#edf6ff;
+}
+</style>
+</head>
+
+<body>
+
+<div id="splash" class="splash">
+ <div class="splash-content">
+
+  <div class="splash-logo">📚</div>
+
+  <h1>أهلاً بيك في فصل أولى سادس</h1>
+
+  <p>كل ملخصاتك وتقييماتك في مكان واحد</p>
+
+  <button id="startBtn" class="start-btn" type="button">
+   ابدأ الآن
+  </button>
+
+ </div>
+</div>
+
+<aside class="sidebar" id="sidebar" aria-label="القائمة الجانبية">
+ <div class="brand" aria-label="مكتبة الفصل">
+  <span class="brand-mark" aria-hidden="true">📖</span>
+  <span class="nav-label">مكتبة الفصل</span>
+ </div>
+
+ <a class="nav-link active" href="#teachers">
+  <span class="icon">👤</span>
+  <span class="nav-label">مدرسين الفصل</span>
+ </a>
+
+ <a class="nav-link" href="#numbers">
+  <span class="icon">☎</span>
+  <span class="nav-label">أرقام المدرسين</span>
+ </a>
+
+ <a class="nav-link" href="#timetable" data-reveal-timetable>
+  <span class="icon">▦</span>
+  <span class="nav-label">جدول الحصص</span>
+ </a>
+
+ <a class="nav-link" href="#files">
+  <span class="icon">▤</span>
+  <span class="nav-label">التقييمات الأسبوعية</span>
+ </a>
+
+ <div class="spacer"></div>
+
+ <button class="toggle" id="sidebarToggle" type="button">
+  <span class="icon" id="toggleIcon">⇔</span>
+  <span class="nav-label">توسيع القائمة</span>
+ </button>
+</aside>
+
+<div class="page">
+
+<header class="hero">
+ <div class="hero-inner">
+  <h1>فصل أولى سادس</h1>
+  <p>كل ملخصاتك وتقييماتك وملفاتك الدراسية في مكان واحد.</p>
+  <button class="theme" id="themeToggle" type="button">🌙 الوضع الليلي</button>
+ </div>
+</header>
+
+<main class="wrap">
+
+ <section class="panel" id="teachers">
+  <h2>مدرسين الفصل</h2>
+  <p class="muted">أسماء المدرسين والمواد التي يدرّسونها.</p>
+  <div class="grid" id="teachersList"></div>
+ </section>
+
+ <section class="panel" id="numbers">
+  <h2>أرقام المدرسين</h2>
+  <p class="muted">أرقام التواصل مع المدرسين.</p>
+  <div class="grid" id="numbersList"></div>
+ </section>
+
+ <section class="panel" id="timetable">
+  <h2>جدول الحصص</h2>
+  <p class="muted">اختار اليوم علشان تشوف الحصص المقررة فيه.</p>
+  <div class="days" id="dayTabs"></div>
+  <div class="table-wrap" id="tableArea"></div>
+ </section>
+
+<section class="panel" id="files">
+
+ <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
+  <h2 style="margin:0">التقييمات الأسبوعية</h2>
+  <span class="count" id="count"></span>
+ </div>
+
+ <h3 style="margin-bottom:10px">تصفية التقييمات</h3>
+
+ <div class="filters">
+  <div id="weekDropdown"></div>
+  <div id="subjectDropdown"></div>
+
+  <select id="filterWeek" hidden>
+   <option value="">كل الأسابيع</option>
+  </select>
+
+  <select id="filterSubject" hidden>
+   <option value="">كل المواد</option>
+  </select>
+ </div>
+
+ <div class="items" id="items"></div>
+ <div class="empty" id="empty">لا توجد ملفات للعرض حاليًا.</div>
+
+</section>
+
+</main>
+<div class="image-modal" id="imageModal">
+ <div class="image-modal-content">
+
+  <div class="image-modal-header">
+   <strong id="imageModalTitle">صور التقييم</strong>
+   <button type="button" id="closeImageModal">إغلاق ✕</button>
+  </div>
+
+  <div id="imageModalBody"></div>
+
+ </div>
+</div>
+<footer>تم برمجة هذا الموقع بواسطة <strong>ياسين هيثم</strong> © 2026</footer>
+
+</div>
+
+<script>
+"use strict";
+
+const SUBJECTS=[
+ "العربي","الرياضيات","الإنجليزي","العلوم",
+ "التاريخ","الفلسفة","التربية الدينية","البرمجة",
+ "الإيطالي","الفرنساوي","الألماني"
+];
+
+const FILES=[
+
+/* عربي */
+{
+ title:"تقييم اللغة العربية - الأسبوع الأول",
+ subject:"العربي",
+ week:1,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_C_W1.pdf"
+},
+{
+ title:"تقييم اللغة العربية - الأسبوع الثاني",
+ subject:"العربي",
+ week:2,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W2.pdf"
+},
+{
+ title:"تقييم اللغة العربية - الأسبوع الثالث",
+ subject:"العربي",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم اللغة العربية - الأسبوع الرابع",
+ subject:"العربي",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W4.pdf"
+},
+{
+ title:"تقييم اللغة العربية - الأسبوع الخامس",
+ subject:"العربي",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W5.pdf"
+},
+
+/* تاريخ */
+{
+ title:"تقييم التاريخ - الأسبوع الأول",
+ subject:"التاريخ",
+ week:1,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/History_Sec1_TR1_T__W1.pdf"
+},
+{
+ title:"تقييم التاريخ - الأسبوع الثاني",
+ subject:"التاريخ",
+ week:2,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/History_Sec1_TR1_W2.pdf"
+},
+{
+ title:"تقييم التاريخ - الأسبوع الثالث",
+ subject:"التاريخ",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/History_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم التاريخ - الأسبوع الرابع",
+ subject:"التاريخ",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/History_Sec1_TR1_T__W4.pdf"
+},
+{
+ title:"تقييم التاريخ - الأسبوع الخامس",
+ subject:"التاريخ",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/History_Sec1_TR1_W5.pdf"
+},
+{
+ title:"تقييم التاريخ - الأسبوع السادس",
+ subject:"التاريخ",
+ week:6,
+ images:[
+  "history_week6_1.jpg.jfif",
+  "history_week6_2.jpg (2).jfif",
+  "history_week6_3.jpg (2).jfif",
+  "history_week6_4.jpg.jfif"
+ ]
+},
+{
+ title:"تقييم التاريخ - الأسبوع السابع",
+ subject:"التاريخ",
+ week:7,
+ file:"History_Sec1_TR1_W7.pdf"
+},
+
+
+/* رياضيات */
+{
+ title:"تقييم الرياضيات - الأسبوع الأول",
+ subject:"الرياضيات",
+ week:1,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W1.pdf"
+},
+{
+ title:"تقييم الرياضيات - الأسبوع الثالث",
+ subject:"الرياضيات",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم الرياضيات - الأسبوع الرابع",
+ subject:"الرياضيات",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W4.pdf"
+},
+{
+ title:"تقييم الرياضيات - الأسبوع الخامس",
+ subject:"الرياضيات",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W5.pdf"
+},
+
+/* برمجه */
+{
+ title:"تقييم الذكاء الاصطناعي - الأسبوع الأول",
+ subject:"البرمجة",
+ week:1,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W1.pdf"
+},
+{
+ title:"تقييم الذكاء الاصطناعي - الأسبوع الثاني",
+ subject:"البرمجة",
+ week:2,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W2.pdf"
+},
+{
+ title:"تقييم الذكاء الاصطناعي - الأسبوع الثالث",
+ subject:"البرمجة",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم الذكاء الاصطناعي - الأسبوع الرابع",
+ subject:"البرمجة",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W4.pdf"
+},
+{
+ title:"تقييم الذكاء الاصطناعي - الأسبوع الخامس",
+ subject:"البرمجة",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W5.pdf"
+},
+{
+  title: "تقييم البرمجة - الأسبوع السادس",
+  subject: "البرمجة",
+  week: "6",
+  file: "AI_AR_Sec1_TR1_W6.pdf"
+},
+
+/* دين */
+{
+  title: "تقييم التربية الدينية - الأسبوع الأول",
+  subject: "التربية الدينية",
+  week: "1",
+  file: "Islamic_religion_Secondary1_TR1_W1 (1).pdf"
+},
+{
+ title:"تقييم التربية الدينية - الأسبوع الثاني",
+ subject:"التربية الدينية",
+ week:2,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W2.pdf"
+},
+{
+ title:"تقييم التربية الدينية - الأسبوع الثالث",
+ subject:"التربية الدينية",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم التربية الدينية - الأسبوع الرابع",
+ subject:"التربية الدينية",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W4.pdf"
+},
+{
+ title:"تقييم التربية الدينية - الأسبوع الخامس",
+ subject:"التربية الدينية",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W5.pdf"
+},
+{
+ title:"تقييم التربية الدينية - الأسبوع السابع",
+ subject:"التربية الدينية",
+ week:7,
+ file:"Islamic_AR_Sec1_TR1_W7.pdf"
+},
+
+/* علوم */
+{
+ title:"تقييم العلوم المتكاملة - الأسبوع الأول",
+ subject:"العلوم",
+ week:1,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W1.pdf"
+},
+{
+ title:"تقييم العلوم المتكاملة - الأسبوع الثاني",
+ subject:"العلوم",
+ week:2,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W2.pdf"
+},
+{
+ title:"تقييم العلوم المتكاملة - الأسبوع الثالث",
+ subject:"العلوم",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم العلوم المتكاملة - الأسبوع الرابع",
+ subject:"العلوم",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W4.pdf"
+},
+{
+ title:"تقييم العلوم المتكاملة - الأسبوع الخامس",
+ subject:"العلوم",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W5.pdf"
+},
+
+/* فلسفة */
+{
+ title:"تقييم الفلسفة - الأسبوع الأول",
+ subject:"الفلسفة",
+ week:1,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/philosophy_AR_Sec1_TR1_W1.pdf"
+},
+{
+ title:"تقييم الفلسفة - الأسبوع الثاني",
+ subject:"الفلسفة",
+ week:2,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/philosophy_AR_Sec1_TR1_W2.pdf"
+},
+{
+ title:"تقييم الفلسفة - الأسبوع الثالث",
+ subject:"الفلسفة",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/philosophy_AR_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم الفلسفة - الأسبوع الرابع",
+ subject:"الفلسفة",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/philosophy_AR_Sec1_TR1_W4.pdf"
+},
+{
+ title:"تقييم الفلسفة - الأسبوع الخامس",
+ subject:"الفلسفة",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/philosophy_AR_Sec1_TR1_W5.pdf"
+},
+{
+  title: "تقييم الفلسفة - الأسبوع السادس",
+  subject: "الفلسفة",
+  week: "6",
+  file: "philosophy_AR_Sec1_TR1_W6.pdf"
+},
+
+/* انجليزي */
+{
+ title:"تقييم اللغة الإنجليزية - الأسبوع الأول",
+ subject:"الإنجليزي",
+ week:1,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W1.pdf"
+},
+{
+ title:"تقييم اللغة الإنجليزية - الأسبوع الثاني",
+ subject:"الإنجليزي",
+ week:2,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W2.pdf"
+},
+{
+ title:"تقييم اللغة الإنجليزية - الأسبوع الثالث",
+ subject:"الإنجليزي",
+ week:3,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W3.pdf"
+},
+{
+ title:"تقييم اللغة الإنجليزية - الأسبوع الرابع",
+ subject:"الإنجليزي",
+ week:4,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W4.pdf"
+},
+{
+ title:"تقييم اللغة الإنجليزية - الأسبوع الخامس",
+ subject:"الإنجليزي",
+ week:5,
+ file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W5.pdf"
+},
+
+/* فرنساوي */
+{
+  title: "تقييم الفرنساوي - الأسبوع الأول",
+  subject: "الفرنساوي",
+  week: 1,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w1.pdf"
+},
+{
+  title: "تقييم الفرنساوي - الأسبوع الثاني",
+  subject: "الفرنساوي",
+  week: 2,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w2.pdf"
+},
+{
+  title: "تقييم الفرنساوي - الأسبوع الثالث",
+  subject: "الفرنساوي",
+  week: 3,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w3.pdf"
+},
+{
+  title: "تقييم الفرنساوي - الأسبوع الرابع",
+  subject: "الفرنساوي",
+  week: 4,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w4.pdf"
+},
+
+/* الايطالي */
+{
+  title: "تقييم الإيطالي - الأسبوع الأول",
+  subject: "الإيطالي",
+  week: 1,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W1.pdf"
+},
+{
+  title: "تقييم الإيطالي - الأسبوع الثاني",
+  subject: "الإيطالي",
+  week: 2,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W2.pdf"
+},
+{
+  title: "تقييم الإيطالي - الأسبوع الثالث",
+  subject: "الإيطالي",
+  week: 3,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W3.pdf"
+},
+{
+  title: "تقييم الإيطالي - الأسبوع الرابع",
+  subject: "الإيطالي",
+  week: 4,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W4.pdf"
+},
+{
+  title: "تقييم الإيطالي - الأسبوع الخامس",
+  subject: "الإيطالي",
+  week: 5,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W5.pdf"
+},
+
+/* الماني */
+{
+  title: "تقييم الألماني - الأسبوع الأول",
+  subject: "الألماني",
+  week: 1,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W1.pdf"
+},
+{
+  title: "تقييم الألماني - الأسبوع الثاني",
+  subject: "الألماني",
+  week: 2,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W2.pdf"
+},
+{
+  title: "تقييم الألماني - الأسبوع الثالث",
+  subject: "الألماني",
+  week: 3,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W3.pdf"
+},
+{
+  title: "تقييم الألماني - الأسبوع الرابع",
+  subject: "الألماني",
+  week: 4,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W4.pdf"
+},
+{
+  title: "تقييم الألماني - الأسبوع الخامس",
+  subject: "الألماني",
+  week: 5,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W5.pdf"
+},
+
+];
+
+const TEACHERS=[
+ {name:"رنا السيد",subject:"تاريخ"},
+ {name:"مني العشري",subject:"علوم متكاملة"},
+ {name:"أمل عبد السميع",subject:"لغة عربية"},
+ {name:"علاء الشبراوي",subject:"لغة إنجليزية"},
+ {name:"أمل عبد السميع",subject:"تربية دينية"},
+ {name:"أشرف نسيم",subject:"رياضيات"},
+ {name:"هيثم | طرهوني | أحمد",subject:"ألماني | فرنساوي | إيطالي"},
+ {name:"نهى عبد الفتاح",subject:"فلسفة"},
+ {name:"هبة عبد القادر",subject:"برمجة"}
+];
+
+const TEACHER_NUMBERS=[
+ {name:"رنا السيد",phone:"01553903841"},
+ {name:"منى العشري",phone:"01279764433"},
+ {name:"أمل عبد السميع",phone:"01144497841"},
+ {name:"علاء الشبراوي",phone:"01060245077"},
+ {name:"أشرف نسيم",phone:"01*********"},
+ {name:"نهى عبد الفتاح",phone:"01119941618"},
+ {name:"هبة عبد القادر",phone:"01111302462"}
+];
+
+const $=id=>document.getElementById(id);
+$("startBtn").addEventListener("click",()=>{
+ $("splash").classList.add("is-hidden");
+});
+
+/* القائمة الجانبية */
+const sidebar=$("sidebar");
+
+$("sidebarToggle").addEventListener("click",()=>{
+ const open=sidebar.classList.toggle("expanded");
+ document.body.classList.toggle("expanded",open);
+ $("toggleIcon").textContent=open?"⇤":"⇥";
+});
+/* تحديث القسم النشط أثناء التمرير */
+const sections = document.querySelectorAll(
+ "#teachers, #numbers, #timetable, #files"
+);
+
+const observer = new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   document.querySelectorAll(".nav-link").forEach(link=>{
+    link.classList.toggle(
+     "active",
+     link.getAttribute("href")==="#"+entry.target.id
+    );
+   });
+  }
+ });
+},{
+ threshold:0.3
+});
+
+sections.forEach(section=>observer.observe(section));
+document.querySelectorAll(".nav-link").forEach(link=>{
+ link.addEventListener("click",()=>{
+  document.querySelectorAll(".nav-link").forEach(x=>x.classList.remove("active"));
+  link.classList.add("active");
+
+  if(link.hasAttribute("data-reveal-timetable")){
+   $("timetable").hidden=false;
+   renderTimetable();
+  }
+
+  if(innerWidth<=600){
+   sidebar.classList.remove("expanded");
+   document.body.classList.remove("expanded");
+   $("toggleIcon").textContent="⇥";
+  }
+ });
+});
+
+/* الوضع الليلي */
+let theme=localStorage.getItem("faslTheme")||"auto";
+
+function applyTheme(){
+ const dark=theme==="dark"||
+ (theme==="auto"&&matchMedia("(prefers-color-scheme: dark)").matches);
+
+ document.documentElement.dataset.theme=dark?"dark":"light";
+
+ $("themeToggle").textContent=dark
+ ? "☀️ الوضع النهاري"
+ : "🌙 الوضع الليلي";
+}
+
+applyTheme();
+
+$("themeToggle").addEventListener("click",()=>{
+ theme=document.documentElement.dataset.theme==="dark"?"light":"dark";
+ localStorage.setItem("faslTheme",theme);
+ applyTheme();
+});
+
+/* أسماء الأسابيع */
+const words = Array.from({length: 11}, (_, i) => String(i));
+
+/* تجهيز فلتر الأسابيع */
+for(let i=1;i<=7;i++){
+ $("filterWeek").add(
+  new Option(String(i),String(i))
+ );
+}
+/* تجهيز فلتر المواد */
+SUBJECTS.forEach(s=>{
+ $("filterSubject").add(new Option(s,s));
+});
+
+/* القوائم المخصصة للفلاتر */
+
+function createCustomFilter(selectId,containerId){
+
+ const select=$(selectId);
+ const container=$(containerId);
+
+ const wrapper=document.createElement("div");
+ wrapper.className="custom-filter";
+
+ const trigger=document.createElement("button");
+ trigger.type="button";
+ trigger.innerHTML=`
+  <span class="selected-label"></span>
+  <span class="arrow">⌄</span>
+ `;
+
+ const options=document.createElement("div");
+ options.className="custom-options";
+
+ function update(){
+
+  trigger.querySelector(".selected-label").textContent=
+   select.options[select.selectedIndex].text;
+
+  options.querySelectorAll("button").forEach(button=>{
+   button.classList.toggle(
+    "selected",
+    button.dataset.value===select.value
+   );
+  });
+ }
+
+ Array.from(select.options).forEach(option=>{
+
+  const button=document.createElement("button");
+  button.type="button";
+  button.textContent=option.text;
+  button.dataset.value=option.value;
+
+  button.addEventListener("click",()=>{
+
+   select.value=option.value;
+   select.dispatchEvent(new Event("change"));
+
+   update();
+   wrapper.classList.remove("active");
+   trigger.classList.remove("open");
+  });
+
+  options.append(button);
+ });
+
+ trigger.addEventListener("click",()=>{
+
+  document.querySelectorAll(".custom-filter").forEach(item=>{
+   if(item!==wrapper){
+    item.classList.remove("active");
+    item.querySelector(":scope > button").classList.remove("open");
+   }
+  });
+
+  const open=wrapper.classList.toggle("active");
+  trigger.classList.toggle("open",open);
+ });
+
+ wrapper.append(trigger,options);
+ container.append(wrapper);
+
+ update();
+}
+
+createCustomFilter("filterWeek","weekDropdown");
+createCustomFilter("filterSubject","subjectDropdown");
+
+/* إغلاق القوائم عند الضغط خارجها */
+document.addEventListener("click",event=>{
+ if(!event.target.closest(".custom-filter")){
+  document.querySelectorAll(".custom-filter").forEach(item=>{
+   item.classList.remove("active");
+   item.querySelector(":scope > button").classList.remove("open");
+  });
+ }
+});
+/* عرض التقييمات */
+function renderFiles(){
+
+ const week=$("filterWeek").value;
+ const subject=$("filterSubject").value;
+
+ const found=FILES.filter(f=>
+  (!week||String(f.week)===week)&&
+  (!subject||f.subject===subject)
+ );
+
+ $("items").replaceChildren();
+
+ $("count").textContent="عدد الملفات المعروضة: "+found.length;
+
+$("empty").textContent =
+  "لا توجد تقييمات لهذه المادة في هذا الأسبوع حتى الآن.";
+
+$("empty").hidden = found.length > 0;
+
+ found.forEach(f=>{
+
+  const card=document.createElement("article");
+  card.className="item";
+
+  const tag=document.createElement("span");
+  tag.className="tag";
+  tag.textContent=f.subject;
+
+  const title=document.createElement("h3");
+  title.textContent=f.title;
+
+  const p=document.createElement("p");
+  p.className="muted";
+  p.textContent="الأسبوع "+f.week+" • ملف PDF";
+
+  const a=document.createElement("a");
+
+  if(f.images){
+
+   a.href="#";
+   a.textContent="عرض التقييم ↗";
+
+   a.addEventListener("click",event=>{
+    event.preventDefault();
+
+    $("imageModalTitle").textContent=f.title;
+    $("imageModalBody").replaceChildren();
+
+    f.images.forEach(src=>{
+     const img=document.createElement("img");
+     img.src=src;
+     img.alt=f.title;
+     img.loading="lazy";
+     $("imageModalBody").append(img);
+    });
+
+    $("imageModal").classList.add("active");
+    document.body.style.overflow="hidden";
+   });
+
+  }else{
+
+   a.href=f.file;
+   a.target="_blank";
+   a.rel="noopener noreferrer";
+   a.textContent="فتح ملف PDF ↗";
+
+  }
+
+  card.append(tag,title,p,a);
+  $("items").append(card);
+ });
+}
+
+$("closeImageModal").addEventListener("click",()=>{
+ $("imageModal").classList.remove("active");
+ document.body.style.overflow="";
+});
+
+$("imageModal").addEventListener("click",event=>{
+ if(event.target===$("imageModal")){
+  $("imageModal").classList.remove("active");
+  document.body.style.overflow="";
+ }
+});
+
+renderFiles();
+
+$("filterWeek").addEventListener("change",renderFiles);
+$("filterSubject").addEventListener("change",renderFiles);
+
+/* عرض المدرسين وأرقامهم */
+function renderPeople(target,data,showPhone=false){
+
+ data.forEach(person=>{
+
+  const card=document.createElement("article");
+  card.className="teacher";
+
+  const avatar=document.createElement("span");
+  avatar.className="avatar";
+  avatar.textContent=showPhone?"📞":"👩‍🏫";
+
+  const info=document.createElement("div");
+
+  const name=document.createElement("h3");
+  name.textContent=person.name;
+
+  const detail=document.createElement("p");
+  detail.textContent=showPhone?person.phone:person.subject;
+
+  info.append(name,detail);
+  card.append(avatar,info);
+
+  if(showPhone&&!person.phone.includes("*")){
+   const a=document.createElement("a");
+   a.href="tel:"+person.phone;
+   a.textContent="اتصال";
+   card.append(a);
+  }
+
+  target.append(card);
+ });
+}
+
+renderPeople($("teachersList"),TEACHERS);
+renderPeople($("numbersList"),TEACHER_NUMBERS,true);
+
+/* مواعيد الحصص */
+const PERIODS=[
+ ["8:00 - 8:40","الحصة الأولى",1],
+ ["8:40 - 9:20","الحصة الثانية",2],
+ ["9:20 - 10:00","الحصة الثالثة",3],
+ ["10:00 - 10:40","الحصة الرابعة",4],
+ ["10:40 - 11:10","الفسحة",0],
+ ["11:10 - 11:50","الحصة الخامسة",5],
+ ["11:50 - 12:30","الحصة السادسة",6],
+ ["12:30 - 13:00","الحصة السابعة",7]
+];
+
+const TIMETABLE={
+
+ "الأحد":[
+  ["تاريخ","رنا السيد"],
+  ["تاريخ","رنا السيد"],
+  ["لغة عربية","أمل عبد السميع"],
+  ["لغة عربية","أمل عبد السميع"],
+  ["لغة إنجليزية","علاء الشبراوي"],
+  ["لغة إنجليزية","علاء الشبراوي"],
+  ["دين","أمل عبد السميع"]
+ ],
+
+ "الإثنين":[
+  ["علوم","منى العشري"],
+  ["علوم","منى العشري"],
+  ["رياضيات","أشرف نسيم"],
+  ["رياضيات","أشرف نسيم"],
+  ["لغة ثانية","هيثم / طرهوني / أحمد"],
+  ["فلسفة","نهى عبد الفتاح"],
+  ["فلسفة","نهى عبد الفتاح"]
+ ],
+
+ "الثلاثاء":[
+  ["علوم","منى العشري"],
+  ["علوم","منى العشري"],
+  ["فلسفة","نهى عبد الفتاح"],
+  ["فلسفة","نهى عبد الفتاح"],
+  ["لغة إنجليزية","علاء الشبراوي"],
+  ["لغة إنجليزية","علاء الشبراوي"],
+  ["دين","أمل عبد السميع"]
+ ],
+
+ "الأربعاء":[
+  ["برمجة","هبة عبد القادر"],
+  ["برمجة","هبة عبد القادر"],
+  ["لغة عربية","أمل عبد السميع"],
+  ["لغة عربية","أمل عبد السميع"],
+  ["لغة ثانية","هيثم / طرهوني / أحمد"],
+  ["تاريخ","رنا السيد"],
+  ["تاريخ","رنا السيد"]
+ ],
+
+ "الخميس":[
+  ["عربي","أمل عبد السميع"],
+  ["علوم","منى العشري"],
+  ["برمجة","هبة عبد القادر"],
+  ["برمجة","هبة عبد القادر"],
+  ["رياضيات","أشرف نسيم"],
+  ["رياضيات","أشرف نسيم"]
+ ]
+
+};
+
+let selectedDay="الأحد";
+
+/* عرض جدول الحصص */
+function renderTimetable(){
+
+ const tabs=$("dayTabs");
+ const area=$("tableArea");
+
+ tabs.replaceChildren();
+
+ Object.keys(TIMETABLE).forEach(day=>{
+
+  const b=document.createElement("button");
+
+  b.textContent=day;
+  b.className=day===selectedDay?"active":"";
+
+  b.onclick=()=>{
+   selectedDay=day;
+   renderTimetable();
+  };
+
+  tabs.append(b);
+ });
+
+ const table=document.createElement("table");
+
+ table.innerHTML=
+ "<thead><tr><th>الحصة / الوقت</th><th>المادة</th><th>المدرس</th></tr></thead>";
+
+ const body=document.createElement("tbody");
+
+ PERIODS.forEach(([time,label,num])=>{
+
+  const tr=document.createElement("tr");
+
+  if(num===0){
+
+   const td=document.createElement("td");
+   td.colSpan=3;
+   td.textContent=label+" • "+time;
+   tr.append(td);
+
+  }else{
+
+   const lesson=TIMETABLE[selectedDay][num-1]||["—","—"];
+
+   [
+    label+" • "+time,
+    lesson[0],
+    lesson[1]
+   ].forEach(value=>{
+    const td=document.createElement("td");
+    td.textContent=value;
+    tr.append(td);
+   });
+  }
+
+  body.append(tr);
+ });
+
+ table.append(body);
+ area.replaceChildren(table);
+}
+
+renderTimetable();
+
+</script>
+</body>
+</html>
