@@ -1459,6 +1459,42 @@ footer {
  background:#1b2940;
  color:#edf6ff;
 }
+/* زر مراسلة واتساب */
+.whatsapp-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #168b50;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.whatsapp-link:hover {
+  color: #0b6638;
+  text-decoration: underline;
+}
+.teacher-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.teacher-actions a {
+  display: inline-block;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.whatsapp-link {
+  color: #168b50;
+  font-weight: 700;
+}
+
+.whatsapp-link:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 
@@ -1592,6 +1628,19 @@ footer {
 <script>
 "use strict";
 
+/* عند تحديث الصفحة، ابدأ من أول الموقع */
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+if (location.hash) {
+  history.replaceState(null, "", location.pathname + location.search);
+}
+
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
+
 const SUBJECTS=[
  "العربي","الرياضيات","الإنجليزي","العلوم",
  "التاريخ","الفلسفة","التربية الدينية","البرمجة",
@@ -1630,6 +1679,18 @@ const FILES=[
  subject:"العربي",
  week:5,
  file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W5.pdf"
+},
+{
+  title: "تقييم اللغة العربية - الأسبوع السادس",
+  subject: "العربي",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W6.pdf"
+},
+{
+  title: "تقييم اللغة العربية - الأسبوع السابع",
+  subject: "العربي",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W7.pdf"
 },
 
 /* تاريخ */
@@ -1690,6 +1751,12 @@ const FILES=[
  file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W1.pdf"
 },
 {
+  title: "تقييم الرياضيات - الأسبوع الثاني",
+  subject: "الرياضيات",
+  week: 2,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W2.pdf"
+},
+{
  title:"تقييم الرياضيات - الأسبوع الثالث",
  subject:"الرياضيات",
  week:3,
@@ -1706,6 +1773,18 @@ const FILES=[
  subject:"الرياضيات",
  week:5,
  file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W5.pdf"
+},
+{
+  title: "تقييم الرياضيات - الأسبوع السادس",
+  subject: "الرياضيات",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W6.pdf"
+},
+{
+  title: "تقييم الرياضيات - الأسبوع السابع",
+  subject: "الرياضيات",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W7.pdf"
 },
 
 /* برمجه */
@@ -1745,6 +1824,12 @@ const FILES=[
   week: "6",
   file: "AI_AR_Sec1_TR1_W6.pdf"
 },
+{
+  title: "تقييم الذكاء الاصطناعي والبرمجة - الأسبوع السابع",
+  subject: "البرمجة",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W7.pdf"
+},
 
 /* دين */
 {
@@ -1778,10 +1863,16 @@ const FILES=[
  file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W5.pdf"
 },
 {
- title:"تقييم التربية الدينية - الأسبوع السابع",
- subject:"التربية الدينية",
- week:7,
- file:"Islamic_AR_Sec1_TR1_W7.pdf"
+  title: "تقييم التربية الدينية الإسلامية - الأسبوع السادس",
+  subject: "التربية الدينية",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W6.pdf"
+},
+{
+  title: "تقييم التربية الدينية - الأسبوع السابع",
+  subject: "التربية الدينية",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W7.pdf"
 },
 
 /* علوم */
@@ -1814,6 +1905,12 @@ const FILES=[
  subject:"العلوم",
  week:5,
  file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W5.pdf"
+},
+{
+  title: "تقييم العلوم المتكاملة - الأسبوع السادس",
+  subject: "العلوم",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_6W.pdf"
 },
 
 /* فلسفة */
@@ -1853,6 +1950,12 @@ const FILES=[
   week: "6",
   file: "philosophy_AR_Sec1_TR1_W6.pdf"
 },
+{
+  title: "تقييم الفلسفة - الأسبوع السابع",
+  subject: "الفلسفة",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/philosophy_AR_Sec1_TR1_W7.pdf"
+},
 
 /* انجليزي */
 {
@@ -1885,6 +1988,18 @@ const FILES=[
  week:5,
  file:"https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W5.pdf"
 },
+{
+  title: "تقييم اللغة الإنجليزية - الأسبوع السادس",
+  subject: "الإنجليزي",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W6.pdf"
+},
+{
+  title: "تقييم اللغة الإنجليزية - الأسبوع السابع",
+  subject: "الإنجليزي",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W7.pdf"
+},
 
 /* فرنساوي */
 {
@@ -1910,6 +2025,24 @@ const FILES=[
   subject: "الفرنساوي",
   week: 4,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w4.pdf"
+},
+{
+  title: "تقييم اللغة الفرنسية - الأسبوع الخامس",
+  subject: "الفرنساوي",
+  week: 5,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w5.pdf"
+},
+{
+  title: "تقييم اللغة الفرنسية - الأسبوع السادس",
+  subject: "الفرنساوي",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w6.pdf"
+},
+{
+  title: "تقييم اللغة الفرنسية - الأسبوع السابع",
+  subject: "الفرنساوي",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/French2_sec1_tr1_w7.pdf"
 },
 
 /* الايطالي */
@@ -1943,6 +2076,18 @@ const FILES=[
   week: 5,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W5.pdf"
 },
+{
+  title: "تقييم اللغة الإيطالية - الأسبوع السادس",
+  subject: "الإيطالي",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W6.pdf"
+},
+{
+  title: "تقييم اللغة الإيطالية - الأسبوع السابع",
+  subject: "الإيطالي",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W7.pdf"
+},
 
 /* الماني */
 {
@@ -1974,6 +2119,18 @@ const FILES=[
   subject: "الألماني",
   week: 5,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W5.pdf"
+},
+{
+  title: "تقييم اللغة الألمانية - الأسبوع السادس",
+  subject: "الألماني",
+  week: 6,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W6.pdf"
+},
+{
+  title: "تقييم اللغة الألمانية - الأسبوع السابع",
+  subject: "الألماني",
+  week: 7,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W7.pdf"
 },
 
 ];
@@ -2018,19 +2175,20 @@ const sections = document.querySelectorAll(
  "#teachers, #numbers, #timetable, #files"
 );
 
-const observer = new IntersectionObserver(entries=>{
- entries.forEach(entry=>{
-  if(entry.isIntersecting){
-   document.querySelectorAll(".nav-link").forEach(link=>{
-    link.classList.toggle(
-     "active",
-     link.getAttribute("href")==="#"+entry.target.id
-    );
-   });
-  }
- });
-},{
- threshold:0.3
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll(".nav-link").forEach(link => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === "#" + entry.target.id
+        );
+      });
+    }
+  });
+}, {
+  rootMargin: "-25% 0px -60% 0px",
+  threshold: 0
 });
 
 sections.forEach(section=>observer.observe(section));
@@ -2287,13 +2445,29 @@ function renderPeople(target,data,showPhone=false){
   info.append(name,detail);
   card.append(avatar,info);
 
-  if(showPhone&&!person.phone.includes("*")){
-   const a=document.createElement("a");
-   a.href="tel:"+person.phone;
-   a.textContent="اتصال";
-   card.append(a);
-  }
+if(showPhone && !person.phone.includes("*")) {
 
+  const actions = document.createElement("div");
+  actions.className = "teacher-actions";
+
+  // زر الاتصال
+  const call = document.createElement("a");
+  call.href = "tel:" + person.phone;
+  call.textContent = "اتصال";
+
+  // زر واتساب
+  const whatsapp = document.createElement("a");
+  const phone = person.phone.replace(/\D/g, "").replace(/^0/, "");
+
+  whatsapp.href = "https://wa.me/20" + phone;
+  whatsapp.target = "_blank";
+  whatsapp.rel = "noopener noreferrer";
+  whatsapp.textContent = "واتساب";
+  whatsapp.className = "whatsapp-link";
+
+  actions.append(call, whatsapp);
+  card.append(actions);
+}
   target.append(card);
  });
 }
