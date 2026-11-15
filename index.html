@@ -2586,6 +2586,20 @@ const TEACHER_NUMBERS=[
 
 const REGISTER_URL = "https://script.google.com/macros/s/AKfycby2wip6iCCub8adBB3f9_JBkSYoooa9H1N5uqogoutjEqlWbUJvVtLbWnH6qPA0T7n2/exec";
 
+// تسجيل زيارة جديدة عند فتح الموقع
+const savedStudentName = localStorage.getItem("studentName");
+
+if (savedStudentName) {
+  fetch(REGISTER_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({ name: savedStudentName })
+  });
+}
+ 
 $("startBtn").addEventListener("click",()=>{
   $("splash").classList.add("is-hidden");
 
