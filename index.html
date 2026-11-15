@@ -1502,6 +1502,137 @@ footer {
   font-size: 22px;
   margin: 12px 0;
 }
+
+/* ===== الكتب الخارجية ===== */
+
+#books .books-header {
+  display: block;
+  margin-bottom: 15px;
+}
+
+#books .books-header h2 {
+  margin-bottom: 5px;
+}
+
+#books .books-toggle {
+  display: grid;
+  place-items: center;
+  width: auto;
+  min-width: 75px;
+  height: 42px;
+  padding: 0 16px;
+  margin: 12px auto 0;
+  border: 1px solid rgba(100,145,190,.3);
+  border-radius: 13px;
+  background: rgba(255,255,255,.55);
+  color: #3979b9;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .25s ease, border-color .25s ease;
+  transform: none;
+}
+
+#books .books-toggle:hover {
+  transform: translateY(-3px);
+  background: rgba(190,215,245,.65);
+}
+
+#books .books-toggle span {
+  display: inline-block;
+  transition: transform .25s ease;
+}
+
+
+
+#books .books-filter-title {
+  margin: 15px 0 10px;
+}
+
+#books .books-filter,
+#books #bookSubjectDropdown {
+  width: 100%;
+  min-width: 0;
+}
+
+#books #bookSubjectDropdown .custom-filter > button {
+  position: relative;
+  justify-content: center;
+  font-size: 17px;
+}
+
+#books #bookSubjectDropdown .custom-filter .selected-label {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#books #bookSubjectDropdown .custom-filter .arrow {
+  position: absolute;
+  left: 15px;
+}
+
+#books .items {
+  margin-top: 15px;
+}
+
+#books .book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+#books .book-icon {
+  display: grid;
+  place-items: center;
+  min-height: 115px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#dceaff,#eee7ff);
+  font-size: 48px;
+}
+
+#books .book-card h3 {
+  overflow-wrap: anywhere;
+}
+
+#books .book-card a {
+  display: inline-block;
+  margin-top: 5px;
+  text-decoration: none;
+}
+
+:root[data-theme="dark"] #books .books-toggle {
+  background: rgba(40,48,82,.8);
+  color: #e0dcff;
+  border-color: rgba(170,180,255,.2);
+}
+
+:root[data-theme="dark"] #books .book-icon {
+  background: linear-gradient(135deg,#34304f,#443451);
+}
+
+@media (max-width: 600px) {
+  #books .books-toggle {
+    min-width: 80px;
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  #books #bookSubjectDropdown .custom-filter > button {
+    min-height: 48px;
+  }
+}
+
+#books #bookSubjectDropdown .custom-options button {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: center;
+  min-height: 48px;
+}
+
 </style>
 </head>
 
@@ -1543,6 +1674,11 @@ footer {
   <span class="icon">▦</span>
   <span class="nav-label">جدول الحصص</span>
  </a>
+
+ <a class="nav-link" href="#books">
+  <span class="icon">📚</span>
+  <span class="nav-label">الكتب الخارجية</span>
+</a>
 
  <a class="nav-link" href="#files">
   <span class="icon">▤</span>
@@ -1587,6 +1723,47 @@ footer {
   <div class="days" id="dayTabs"></div>
   <div class="table-wrap" id="tableArea"></div>
  </section>
+
+ <section class="panel" id="books">
+
+  <div class="books-header">
+    <div>
+      <h2>الكتب الخارجية</h2>
+      <p class="muted">تصفح الكتب الخارجية حسب المادة.</p>
+    </div>
+
+
+  </div>
+
+  <h3 class="books-filter-title">تصفية الكتب</h3>
+
+<div class="books-filter">
+  <div id="bookSubjectDropdown"></div>
+  
+  <select id="bookSubjectFilter" hidden>
+      <option value="">كل المواد</option>
+      <option value="العربي">عربي</option>
+      <option value="العلوم">علوم</option>
+      <option value="الرياضيات">رياضة</option>
+      <option value="الإنجليزي">إنجليزي</option>
+      <option value="الفرنساوي">فرنساوي</option>
+      <option value="الفلسفة">فلسفة</option>
+      <option value="التاريخ">تاريخ</option>
+    </select>
+  </div>
+
+  <button type="button" class="books-toggle" id="booksToggle"
+  aria-label="عرض باقي الكتب" aria-expanded="false" hidden>
+  <span id="booksArrow">⌄</span>
+</button>
+
+  <div class="items" id="booksItems"></div>
+
+  <div class="empty" id="booksEmpty">
+    لا توجد كتب مضافة حاليًا.
+  </div>
+
+</section>
 
 <section class="panel" id="files">
 
@@ -2262,6 +2439,46 @@ const FILES=[
 
 ];
 
+/* الكتب الخارجية */
+
+const BOOKS = [
+  {
+    title: "كتاب اللغة العربية",
+    subject: "العربي",
+    file: "books/arabic-book.pdf"
+  },
+  {
+    title: "كتاب العلوم",
+    subject: "العلوم",
+    file: "books/science-book.pdf"
+  },
+  {
+    title: "كتاب الرياضيات",
+    subject: "الرياضيات",
+    file: "books/math-book.pdf"
+  },
+  {
+    title: "كتاب اللغة الإنجليزية",
+    subject: "الإنجليزي",
+    file: "books/english-book.pdf"
+  },
+  {
+    title: "كتاب اللغة الفرنسية",
+    subject: "الفرنساوي",
+    file: "books/french-book.pdf"
+  },
+  {
+    title: "كتاب الفلسفة",
+    subject: "الفلسفة",
+    file: "books/philosophy-book.pdf"
+  },
+  {
+    title: "كتاب التاريخ",
+    subject: "التاريخ",
+    file: "books/history-book.pdf"
+  }
+];
+
 const TEACHERS=[
  {name:"رنا السيد",subject:"تاريخ"},
  {name:"مني العشري",subject:"علوم متكاملة"},
@@ -2299,7 +2516,7 @@ $("sidebarToggle").addEventListener("click",()=>{
 });
 /* تحديث القسم النشط أثناء التمرير */
 const sections = document.querySelectorAll(
- "#teachers, #numbers, #timetable, #files"
+ "#teachers, #numbers, #timetable, #books, #files"
 );
 
 const observer = new IntersectionObserver(entries => {
@@ -2447,6 +2664,7 @@ function createCustomFilter(selectId,containerId){
 
 createCustomFilter("filterWeek","weekDropdown");
 createCustomFilter("filterSubject","subjectDropdown");
+createCustomFilter("bookSubjectFilter","bookSubjectDropdown");
 
 /* إغلاق القوائم عند الضغط خارجها */
 document.addEventListener("click",event=>{
@@ -2546,8 +2764,106 @@ $("imageModal").addEventListener("click",event=>{
 
 renderFiles();
 
-$("filterWeek").addEventListener("change",renderFiles);
-$("filterSubject").addEventListener("change",renderFiles);
+/* عرض الكتب الخارجية */
+
+let booksExpanded = false;
+
+function renderBooks() {
+
+  const subject = $("bookSubjectFilter").value;
+
+  const found = BOOKS.filter(book =>
+    !subject || book.subject === subject
+  );
+
+  const container = $("booksItems");
+  const empty = $("booksEmpty");
+  const toggle = $("booksToggle");
+  const arrow = $("booksArrow");
+
+  container.replaceChildren();
+
+  empty.hidden = found.length > 0;
+
+  if (found.length === 0) {
+    toggle.hidden = true;
+    booksExpanded = false;
+    return;
+  }
+
+  toggle.hidden = found.length <= 2;
+
+  if (found.length <= 2) {
+    booksExpanded = false;
+  }
+
+  const visibleBooks = booksExpanded
+    ? found
+    : found.slice(0, 2);
+
+  visibleBooks.forEach(book => {
+
+    const card = document.createElement("article");
+    card.className = "item book-card";
+
+    const icon = document.createElement("div");
+    icon.className = "book-icon";
+    icon.textContent = "📚";
+
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = book.subject;
+
+    const title = document.createElement("h3");
+    title.textContent = book.title;
+
+    const link = document.createElement("a");
+    link.href = book.file;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "فتح الكتاب ↗";
+
+    card.append(icon, tag, title, link);
+    container.append(card);
+  });
+
+  toggle.classList.toggle("expanded", booksExpanded);
+
+  toggle.setAttribute(
+    "aria-expanded",
+    String(booksExpanded)
+  );
+
+  toggle.setAttribute(
+    "aria-label",
+    booksExpanded
+      ? "تصغير قائمة الكتب"
+      : "عرض باقي الكتب"
+  );
+
+arrow.textContent = booksExpanded ? "اعرض أقل" : "اعرض أكثر";
+}
+
+/* زر تكبير وتصغير قائمة الكتب */
+
+$("booksToggle").addEventListener("click", () => {
+  booksExpanded = !booksExpanded;
+  renderBooks();
+});
+
+/* فلتر مواد الكتب */
+
+$("bookSubjectFilter").addEventListener("change", () => {
+  booksExpanded = false;
+  renderBooks();
+});
+
+renderBooks();
+
+/* فلاتر التقييمات */
+
+$("filterWeek").addEventListener("change", renderFiles);
+$("filterSubject").addEventListener("change", renderFiles);
 
 /* عرض المدرسين وأرقامهم */
 function renderPeople(target,data,showPhone=false){
