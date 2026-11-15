@@ -45,6 +45,62 @@ background:
  overflow:hidden;
 }
 
+/* شاشة تسجيل اسم الطالب */
+.student-register {
+ position:fixed;
+ inset:0;
+ z-index:9998;
+ display:grid;
+ place-items:center;
+ padding:24px;
+ background:linear-gradient(-45deg,#183653,#326b96,#65a9c9,#b8dced);
+ background-size:400% 400%;
+ animation:splash-bg 12s ease infinite;
+}
+
+.student-register[hidden] {
+ display:none;
+}
+
+.student-register-box {
+ width:min(100%,420px);
+ padding:32px 24px;
+ border-radius:24px;
+ background:rgba(255,255,255,.95);
+ color:#183653;
+ text-align:center;
+ box-shadow:0 15px 45px rgba(0,0,0,.18);
+}
+
+.student-register-box h2 {
+ margin:12px 0;
+}
+
+.student-register-box p {
+ color:#64748b;
+}
+
+#studentName {
+ width:100%;
+ padding:14px;
+ margin:16px 0;
+ border:1px solid #cbd5e1;
+ border-radius:12px;
+ font:inherit;
+ text-align:center;
+}
+
+#registerBtn {
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:12px;
+ background:#5146e5;
+ color:white;
+ font:inherit;
+ cursor:pointer;
+}
+
 .splash::before,
 .splash::after{
  content:"";
@@ -1654,6 +1710,31 @@ footer {
  </div>
 </div>
 
+<div id="studentRegister" class="student-register" hidden>
+  <div class="student-register-box">
+    <div class="splash-logo">👋</div>
+
+    <h2>أهلاً بيك!</h2>
+    <p>اسمك ايه ؟</p>
+
+    <form id="studentRegisterForm">
+      <input
+        type="text"
+        id="studentName"
+        placeholder="اكتب اسمك هنا"
+        maxlength="60"
+        required
+      >
+
+      <button type="submit" id="registerBtn">
+        تسجيل الدخول
+      </button>
+
+      <p id="registerMessage"></p>
+    </form>
+  </div>
+</div>
+
 <aside class="sidebar" id="sidebar" aria-label="القائمة الجانبية">
  <div class="brand" aria-label="مكتبة الفصل">
   <span class="brand-mark" aria-hidden="true">📖</span>
@@ -1811,6 +1892,8 @@ footer {
 
 <script>
 "use strict";
+
+const $ = id => document.getElementById(id);
 
 /* عند تحديث الصفحة، ابدأ من أول الموقع */
 if ("scrollRestoration" in history) {
@@ -2501,9 +2584,46 @@ const TEACHER_NUMBERS=[
  {name:"هبة عبد القادر",phone:"01111302462"}
 ];
 
-const $=id=>document.getElementById(id);
+const REGISTER_URL = "https://script.google.com/macros/s/AKfycby2wip6iCCub8adBB3f9_JBkSYoooa9H1N5uqogoutjEqlWbUJvVtLbWnH6qPA0T7n2/exec";
+
 $("startBtn").addEventListener("click",()=>{
- $("splash").classList.add("is-hidden");
+  $("splash").classList.add("is-hidden");
+
+  if (!localStorage.getItem("studentName")) {
+    $("studentRegister").hidden = false;
+  }
+});
+
+$("studentRegisterForm").addEventListener("submit", async (event)=>{
+  event.preventDefault();
+
+  const name = $("studentName").value.trim();
+  const message = $("registerMessage");
+  const button = $("registerBtn");
+
+  if (!name) return;
+
+  button.disabled = true;
+  button.textContent = "جاري التسجيل...";
+
+  try {
+    await fetch(REGISTER_URL,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{
+        "Content-Type":"text/plain;charset=utf-8"
+      },
+      body:JSON.stringify({name:name})
+    });
+
+    localStorage.setItem("studentName",name);
+    $("studentRegister").hidden = true;
+
+  } catch(error) {
+    message.textContent = "حصلت مشكلة في الاتصال، حاول مرة تانية.";
+    button.disabled = false;
+    button.textContent = "تسجيل الدخول";
+  }
 });
 
 /* القائمة الجانبية */
@@ -2933,32 +3053,32 @@ const PERIODS=[
 const TIMETABLE={
 
  "الأحد":[
-  ["تاريخ","رنا السيد"],
-  ["تاريخ","رنا السيد"],
-  ["لغة عربية","أمل عبد السميع"],
-  ["لغة عربية","أمل عبد السميع"],
-  ["لغة إنجليزية","علاء الشبراوي"],
-  ["لغة إنجليزية","علاء الشبراوي"],
-  ["دين","أمل عبد السميع"]
+  ["برمجة","هبة عبد القادر"],
+  ["برمجة","هبة عبد القادر"],
+  ["فلسفة","نهى عبد الفتاح"],
+  ["فلسفة","نهى عبد الفتاح"],
+  ["اقتصاد منزلي","أسماء"],
+  ["علوم","منى العشري"],
+  ["علوم","منى العشري"]
  ],
 
  "الإثنين":[
   ["علوم","منى العشري"],
-  ["علوم","منى العشري"],
-  ["رياضيات","أشرف نسيم"],
-  ["رياضيات","أشرف نسيم"],
   ["لغة ثانية","هيثم / طرهوني / أحمد"],
-  ["فلسفة","نهى عبد الفتاح"],
-  ["فلسفة","نهى عبد الفتاح"]
+  ["تاريخ","رنا السيد"],
+  ["تاريخ","رنا السيد"],
+  ["رياضيات","أشرف نسيم"],
+  ["رياضيات","أشرف نسيم"],
+  ["عربي","أمل عبد السميع"],
  ],
 
  "الثلاثاء":[
+  ["لغة إنجليزية","علاء الشبراوي"],
+  ["لغة إنجليزية","علاء الشبراوي"],
   ["علوم","منى العشري"],
   ["علوم","منى العشري"],
   ["فلسفة","نهى عبد الفتاح"],
   ["فلسفة","نهى عبد الفتاح"],
-  ["لغة إنجليزية","علاء الشبراوي"],
-  ["لغة إنجليزية","علاء الشبراوي"],
   ["دين","أمل عبد السميع"]
  ],
 
@@ -2967,18 +3087,19 @@ const TIMETABLE={
   ["برمجة","هبة عبد القادر"],
   ["لغة عربية","أمل عبد السميع"],
   ["لغة عربية","أمل عبد السميع"],
-  ["لغة ثانية","هيثم / طرهوني / أحمد"],
   ["تاريخ","رنا السيد"],
-  ["تاريخ","رنا السيد"]
+  ["تاريخ","رنا السيد"],
+  ["لغة ثانية","هيثم / طرهوني / أحمد"]
  ],
 
  "الخميس":[
   ["عربي","أمل عبد السميع"],
-  ["علوم","منى العشري"],
-  ["برمجة","هبة عبد القادر"],
-  ["برمجة","هبة عبد القادر"],
+  ["عربي","أمل عبد السميع"],
   ["رياضيات","أشرف نسيم"],
-  ["رياضيات","أشرف نسيم"]
+  ["رياضيات","أشرف نسيم"],
+  ["لغة إنجليزية","علاء الشبراوي"],
+  ["لغة إنجليزية","علاء الشبراوي"],
+  ["دين","أمل عبد السميع"]
  ]
 
 };
