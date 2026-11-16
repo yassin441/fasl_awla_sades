@@ -2605,24 +2605,33 @@ if (savedStudentName) {
     headers: {
       "Content-Type": "text/plain;charset=utf-8"
     },
-    body: JSON.stringify({ name: savedStudentName })
+    body: JSON.stringify({
+  name: savedStudentName,
+  phone: localStorage.getItem("studentPhone") || ""
+})
   });
 }
 
 $("startBtn").addEventListener("click",()=>{
   $("splash").classList.add("is-hidden");
 
-  if (!localStorage.getItem("studentName")) {
-    $("studentRegister").hidden = false;
-  }
+if (
+  !localStorage.getItem("studentName") ||
+  localStorage.getItem("studentPhone") === null
+) {
+  $("studentName").value = localStorage.getItem("studentName") || "";
+  $("studentPhone").value = localStorage.getItem("studentPhone") || "";
+  $("studentRegister").hidden = false;
+}
 });
 
 $("studentRegisterForm").addEventListener("submit", async (event)=>{
   event.preventDefault();
 
-  const name = $("studentName").value.trim();
-  const message = $("registerMessage");
-  const button = $("registerBtn");
+const name = $("studentName").value.trim();
+const phone = $("studentPhone").value.trim();
+const message = $("registerMessage");
+const button = $("registerBtn");
 
   if (!name) return;
 
@@ -2636,11 +2645,12 @@ $("studentRegisterForm").addEventListener("submit", async (event)=>{
       headers:{
         "Content-Type":"text/plain;charset=utf-8"
       },
-      body:JSON.stringify({name:name})
+      body:JSON.stringify({name:name, phone:phone})
     });
 
-    localStorage.setItem("studentName",name);
-    $("studentRegister").hidden = true;
+    localStorage.setItem("studentName", name);
+localStorage.setItem("studentPhone", phone);
+$("studentRegister").hidden = true;
 
   } catch(error) {
     message.textContent = "حصلت مشكلة في الاتصال، حاول مرة تانية.";
