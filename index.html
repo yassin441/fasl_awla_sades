@@ -1726,6 +1726,15 @@ footer {
         required
       >
 
+      <input
+  type="tel"
+  id="studentPhone"
+  placeholder="رقم التليفون (اختياري)"
+  minlenght="11"
+  maxlength="11"
+  inputmode="tel"
+>
+
       <button type="submit" id="registerBtn">
         تسجيل الدخول
       </button>
@@ -2599,7 +2608,7 @@ if (savedStudentName) {
     body: JSON.stringify({ name: savedStudentName })
   });
 }
- 
+
 $("startBtn").addEventListener("click",()=>{
   $("splash").classList.add("is-hidden");
 
