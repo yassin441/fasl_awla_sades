@@ -3185,10 +3185,10 @@ function filterClassAssessments() {
 
 
 document.getElementById("classSubjectFilter")
-  .addEventListener("change", filterClassAssessments);
+  .addEventListener("change", renderClassAssessments);
 
 document.getElementById("classWeekFilter")
-  .addEventListener("change", filterClassAssessments);
+  .addEventListener("change", renderClassAssessments);
 
 function toggleClassAssessment(containerId, index) {
   const container = document.getElementById(containerId);
@@ -3200,8 +3200,6 @@ function toggleClassAssessment(containerId, index) {
   arrow.textContent = images.hidden ? "⌄" : "⌃";
 }
 
-document.getElementById("classSubjectFilter")
-  .addEventListener("change", filterClassAssessments);
 
 renderClassAssessments();
 
