@@ -1286,7 +1286,8 @@ body,
 
 /* ===== FILE CARDS ===== */
 
-#files .item {
+#files .item,
+#classAssessments .item {
   padding: 17px;
   border-radius: 17px;
   background: rgba(255,255,255,.55);
@@ -1294,18 +1295,21 @@ body,
   box-shadow: 0 7px 22px rgba(40,55,110,.07);
 }
 
-#files .item:hover {
+#files .item:hover,
+#classAssessments .item:hover {
   transform: translateY(-5px);
   border-color: rgba(115,105,220,.45);
   box-shadow: 0 14px 30px rgba(60,65,150,.13);
 }
 
-:root[data-theme="dark"] #files .item {
+:root[data-theme="dark"] #files .item,
+:root[data-theme="dark"] #classAssessments .item {
   background: linear-gradient(145deg, rgba(43,46,82,.85), rgba(29,35,64,.9));
   border-color: rgba(175,160,255,.17);
 }
 
-:root[data-theme="dark"] #files .item:hover {
+:root[data-theme="dark"] #files .item:hover,
+:root[data-theme="dark"] #classAssessments .item:hover {
   border-color: rgba(161,140,255,.5);
   box-shadow: 0 14px 32px rgba(0,0,0,.25);
 }
@@ -1583,31 +1587,15 @@ footer {
   margin-bottom: 5px;
 }
 
-#books .books-toggle {
-  display: grid;
-  place-items: center;
-  width: auto;
-  min-width: 75px;
-  height: 42px;
-  padding: 0 16px;
-  margin: 12px auto 0;
-  border: 1px solid rgba(100,145,190,.3);
-  border-radius: 13px;
-  background: rgba(255,255,255,.55);
-  color: #3979b9;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color .25s ease, border-color .25s ease;
-  transform: none;
-}
 
-#books .books-toggle:hover {
+#books .books-toggle:hover,
+#classAssessments .books-toggle:hover {
   transform: translateY(-3px);
   background: rgba(190,215,245,.65);
 }
 
-#books .books-toggle span {
+#books .books-toggle span,
+#classAssessments .books-toggle span {
   display: inline-block;
   transition: transform .25s ease;
 }
@@ -1672,7 +1660,8 @@ footer {
   text-decoration: none;
 }
 
-:root[data-theme="dark"] #books .books-toggle {
+:root[data-theme="dark"] #books .books-toggle,
+:root[data-theme="dark"] #classAssessments .books-toggle {
   background: rgba(40,48,82,.8);
   color: #e0dcff;
   border-color: rgba(170,180,255,.2);
@@ -1683,7 +1672,8 @@ footer {
 }
 
 @media (max-width: 600px) {
-  #books .books-toggle {
+#books .books-toggle,
+#classAssessments .books-toggle {
     min-width: 80px;
     min-height: 44px;
     font-size: 16px;
@@ -1700,6 +1690,188 @@ footer {
   font-weight: 600;
   justify-content: center;
   min-height: 48px;
+}
+
+/* تقييمات الفصل */
+#classAssessments .subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+#classAssessments .subject-card {
+  background: var(--card-bg, var(--panel));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  transition: 0.25s ease;
+}
+
+#classAssessments .subject-card h3 {
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  #classAssessments .subjects-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #classAssessments .subject-card {
+    padding: 15px;
+    border-radius: 14px;
+  }
+}
+
+/* Class Assessments */
+
+#classAssessments .class-assessment-item {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#classAssessments .class-assessment-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  background: var(--card-bg, var(--panel));
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: right;
+  transition: 0.25s ease;
+}
+
+#classAssessments .class-assessment-btn:hover {
+  background: var(--hover-bg, rgba(81,70,229,0.08));
+}
+
+#classAssessments .assessment-arrow {
+  font-size: 20px;
+  transition: 0.25s ease;
+}
+
+#classAssessments .class-assessment-images {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#classAssessments .class-assessment-images img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* تنسيق أزرار اعرض أكثر وأقل */
+#filesToggle,
+#books .books-toggle,
+#classAssessments .books-toggle {
+  display: grid;
+  place-items: center;
+  width: auto;
+  min-width: 115px;
+  height: 46px;
+  padding: 0 20px;
+  margin: 8px auto 8px;
+  border: 1px solid rgba(100,145,190,.3);
+  border-radius: 13px;
+  background: rgba(255,255,255,.55);
+  color: #3979b9;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .25s ease;
+  transform: none;
+}
+
+#filesToggle:hover,
+#books .books-toggle:hover {
+  transform: translateY(-2px);
+  background: rgba(190,215,245,.65);
+  border-color: rgba(75,130,200,.5);
+  box-shadow: 0 5px 14px rgba(70,120,190,.15);
+}
+
+#filesToggle span,
+#books .books-toggle span {
+  display: inline-block;
+  transition: transform .25s ease;
+}
+
+/* الوضع الداكن */
+:root[data-theme="dark"] #filesToggle,
+:root[data-theme="dark"] #books .books-toggle {
+  background: rgba(40,48,82,.8);
+  color: #e0dcff;
+  border-color: rgba(170,180,255,.2);
+}
+
+:root[data-theme="dark"] #filesToggle:hover,
+:root[data-theme="dark"] #books .books-toggle:hover {
+  background: rgba(65,75,120,.9);
+  border-color: rgba(170,180,255,.45);
+  box-shadow: 0 5px 14px rgba(0,0,0,.2);
+}
+
+#filesToggle[hidden],
+#books .books-toggle[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  #filesToggle,
+  #books .books-toggle {
+    min-width: 80px;
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
+/* المسافة بين تقييمات الفصل */
+#classAssessments .subject-card > div {
+  display: grid;
+  gap: 15px;
+}
+
+/* Hover على رابط عرض التقييم */
+#classAssessments .item a {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: all .25s ease;
+}
+
+#classAssessments .item a:hover {
+  color: #ffc1d7;
+  text-shadow: 0 0 10px rgba(255, 145, 184, .4);
+}
+
+:root[data-theme="dark"] #classAssessments .item a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(125, 211, 252, .5);
+}
+
+/* إخفاء الأزرار فعليًا عند عدم الحاجة إليها */
+#filesToggle[hidden],
+#books .books-toggle[hidden],
+#classAssessmentsToggle[hidden] {
+  display: none !important;
+}
+
+/* تقليل المسافة أسفل زر تقييمات الفصل */
+#classAssessmentsToggle {
+  margin-bottom: 0;
 }
 
 </style>
@@ -1742,11 +1914,10 @@ footer {
       <input
   type="tel"
   id="studentPhone"
-  placeholder="رقم التليفون"
+  placeholder="رقم التليفون (اختياري)"
   minlenght="11"
   maxlength="11"
   inputmode="tel"
-  required
 >
 
       <button type="submit" id="registerBtn">
@@ -1786,8 +1957,13 @@ footer {
 
  <a class="nav-link" href="#files">
   <span class="icon">▤</span>
-  <span class="nav-label">التقييمات الأسبوعية</span>
+  <span class="nav-label">تقييمات الوزارة الأسبوعية</span>
  </a>
+
+ <a class="nav-link" href="#classAssessments">
+ <span class="icon">📝</span>
+ <span class="nav-label">تقييمات الفصل</span>
+</a>
 
  <div class="spacer"></div>
 
@@ -1872,7 +2048,7 @@ footer {
 <section class="panel" id="files">
 
  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
-  <h2 style="margin:0">التقييمات الأسبوعية</h2>
+  <h2 style="margin:0">تقييمات الوزارة الأسبوعية</h2>
   <span class="count" id="count"></span>
  </div>
 
@@ -1891,10 +2067,66 @@ footer {
   </select>
  </div>
 
+ <button type="button" class="books-toggle" id="filesToggle"
+  aria-label="عرض باقي التقييمات" aria-expanded="false" hidden>
+  <span id="filesArrow">⌄</span>
+ </button>
+
  <div class="items" id="items"></div>
+
+
  <div class="empty" id="empty">لا توجد ملفات للعرض حاليًا.</div>
 
 </section>
+
+<section class="panel" id="classAssessments">
+
+  <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
+    <h2 style="margin:0">تقييمات الفصل</h2>
+    <span class="count" id="classAssessmentCount"></span>
+  </div>
+
+  <h3 style="margin-bottom:10px">تصفية التقييمات</h3>
+
+<div class="filters">
+  <div id="classWeekDropdown"></div>
+  <div id="classSubjectDropdown"></div>
+
+  <select id="classWeekFilter" hidden>
+    <option value="">كل الأسابيع</option>
+  </select>
+
+  <select id="classSubjectFilter" hidden>
+    <option value="">كل المواد</option>
+    <option value="math">الرياضيات</option>
+    <option value="english">الإنجليزي</option>
+  </select>
+</div>
+
+<button type="button" class="books-toggle"
+  id="classAssessmentsToggle"
+  aria-label="عرض باقي التقييمات"
+  aria-expanded="false" hidden>
+  <span id="classAssessmentsArrow">⌄</span>
+</button>
+ <div class="subjects-grid">
+
+  <div class="subject-card" data-subject="math">
+    <h3>الرياضيات</h3>
+    <div id="classMathAssessments"></div>
+  </div>
+
+  <div class="subject-card" data-subject="english">
+    <h3>الإنجليزي</h3>
+    <div id="classEnglishAssessments"></div>
+  </div>
+
+</div>
+
+
+<div class="empty" id="classAssessmentEmpty" hidden>
+  لا توجد تقييمات لهذه المادة في هذا الأسبوع حتى الآن.
+</div>
 
 </main>
 <div class="image-modal" id="imageModal">
@@ -1994,6 +2226,12 @@ const FILES=[
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W9.pdf"
 },
+{
+  title: "تقييم اللغة العربية - الأسبوع العاشر",
+  subject: "العربي",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Arabic_Sec1_TR1_W10.pdf"
+},
 
 /* تاريخ */
 {
@@ -2055,6 +2293,12 @@ const FILES=[
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/History_Sec1_TR1_W9.pdf"
 },
+{
+  title: "تقييم التاريخ - الأسبوع العاشر",
+  subject: "التاريخ",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/History_Sec1_TR1_W10.pdf"
+},
 
 
 /* رياضيات */
@@ -2112,6 +2356,12 @@ const FILES=[
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W9.pdf"
 },
+{
+  title: "تقييم الرياضيات - الأسبوع العاشر",
+  subject: "الرياضيات",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Math_AR_Sec1_TR1_W10.pdf"
+},
 
 /* برمجه */
 {
@@ -2167,6 +2417,12 @@ const FILES=[
   subject: "البرمجة",
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W9.pdf"
+},
+{
+  title: "تقييم الذكاء الاصطناعي - الأسبوع العاشر",
+  subject: "البرمجة",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/AI_AR_Sec1_TR1_W10.pdf"
 },
 
 /* دين */
@@ -2224,6 +2480,12 @@ const FILES=[
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W9.pdf"
 },
+{
+  title: "تقييم التربية الدينية - الأسبوع العاشر",
+  subject: "التربية الدينية",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Islamic_AR_Sec1_TR1_W10.pdf"
+},
 
 /* علوم */
 {
@@ -2273,6 +2535,12 @@ const FILES=[
   subject: "العلوم",
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W9.pdf"
+},
+{
+  title: "تقييم العلوم المتكاملة - الأسبوع العاشر",
+  subject: "العلوم",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Integrated_science_ARABIC_Sec1_TR1_W10.pdf"
 },
 
 /* فلسفة */
@@ -2373,6 +2641,12 @@ const FILES=[
   subject: "الإنجليزي",
   week: 7,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W7.pdf"
+},
+{
+  title: "تقييم اللغة الإنجليزية - الأسبوع العاشر",
+  subject: "الإنجليزي",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/English_Sec1_TR1_W10.pdf"
 },
 
 /* فرنساوي */
@@ -2486,6 +2760,12 @@ const FILES=[
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W9.pdf"
 },
+{
+  title: "تقييم اللغة الإيطالية - الأسبوع العاشر",
+  subject: "الإيطالي",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/Italian_Sec1_TR1_W10.pdf"
+},
 
 /* الماني */
 {
@@ -2541,6 +2821,12 @@ const FILES=[
   subject: "الألماني",
   week: 9,
   file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W9.pdf"
+},
+{
+  title: "تقييم اللغة الألمانية - الأسبوع العاشر",
+  subject: "الألماني",
+  week: 10,
+  file: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/Secondry1/Term1/ClassrHomeAssessmentsTest/German_Sec1_TR1_W10.pdf"
 },
 
 ];
@@ -2602,10 +2888,324 @@ const TEACHER_NUMBERS=[
  {name:"منى العشري",phone:"01279764433"},
  {name:"أمل عبد السميع",phone:"01144497841"},
  {name:"علاء الشبراوي",phone:"01060245077"},
- {name:"أشرف نسيم",phone:"01*********"},
+ {name:"أشرف نسيم",phone:"01200883270"},
  {name:"نهى عبد الفتاح",phone:"01119941618"},
  {name:"هبة عبد القادر",phone:"01111302462"}
 ];
+
+const CLASS_ASSESSMENTS = {
+  math: [
+    {
+      title: "تقييم الرياضيات الثاني",
+      subject: "الرياضيات",
+      week: 2,
+      images: [
+        "resources/math-W2-1.jpg",
+        "resources/math-W2-2.jpg"
+      ]
+    },
+    {
+      title: "تقييم الرياضيات الثالث",
+      subject: "الرياضيات",
+      week: 3,
+      images: [
+        "resources/math-W3.jpg",
+      ]
+    },
+    {
+      title: "تقييم الرياضيات الرابع",
+      subject: "الرياضيات",
+      week: 4,
+      images: [
+        "resources/math-W4-1.jpg",
+        "resources/math-W4-2.jpg",
+      ]
+    },
+    {
+      title: "تقييم الرياضيات السابع",
+      subject: "الرياضيات",
+      week: 7,
+      images: [
+        "resources/math-W7.jpg",
+      ]
+    },
+    {
+      title: "تقييم الرياضيات الثامن",
+      subject: "الرياضيات",
+      week: 8,
+      images: [
+        "resources/math-W8-1.jpg",
+        "resources/math-W8-2.jpg",
+      ]
+    },
+    {
+      title: "تقييم الرياضيات العاشر",
+      subject: "الرياضيات",
+      week: 10,
+      images: [
+        "resources/math-W10-1.jpg",
+        "resources/math-W10-2.jpg",
+      ]
+    },
+
+
+  ],
+
+  english: [
+    {
+      title: "تقييم الإنجليزي الأول",
+      subject: "الإنجليزي",
+      week: 1,
+      images: [
+        "resources/English-W1.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي الثاني",
+      subject: "الإنجليزي",
+      week: 2,
+      images: [
+        "resources/English-W2.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي الثالث",
+      subject: "الإنجليزي",
+      week: 3,
+      images: [
+        "resources/English-W3.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي الرابع",
+      subject: "الإنجليزي",
+      week: 4,
+      images: [
+        "resources/English-W4.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي الخامس",
+      subject: "الإنجليزي",
+      week: 5,
+      images: [
+        "resources/English-W5.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي السابع",
+      subject: "الإنجليزي",
+      week: 7,
+      images: [
+        "resources/English-W7.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي الثامن",
+      subject: "الإنجليزي",
+      week: 8,
+      images: [
+        "resources/English W8.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي التاسع",
+      subject: "الإنجليزي",
+      week: 9,
+      images: [
+        "resources/English-W9.jpg",
+      ]
+    },
+    {
+      title: "تقييم الإنجليزي العاشر",
+      subject: "الإنجليزي",
+      week: 10,
+      images: [
+        "resources/English-W10.jpg",
+      ]
+    },
+  ]
+};
+
+
+let classAssessmentsExpanded = false;
+
+function renderClassAssessments() {
+
+  const renderSubject = (assessments, containerId) => {
+    const container = document.getElementById(containerId);
+
+    container.replaceChildren();
+
+    const subjectFilter = document.getElementById("classSubjectFilter").value;
+    const weekFilter = document.getElementById("classWeekFilter").value;
+
+    const filtered = assessments.filter(assessment => {
+      const matchesWeek =
+        !weekFilter || String(assessment.week) === weekFilter;
+
+      return matchesWeek;
+    });
+
+    const visible = subjectFilter || weekFilter || classAssessmentsExpanded
+      ? filtered
+      : filtered.slice(0, 2);
+
+    visible.forEach(assessment => {
+
+      const card = document.createElement("article");
+      card.className = "item";
+
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = assessment.subject;
+
+      const title = document.createElement("h3");
+      title.textContent = assessment.title;
+
+      const p = document.createElement("p");
+      p.className = "muted";
+      p.textContent = "الأسبوع " + assessment.week + " • تقييم الفصل";
+
+      const a = document.createElement("a");
+      a.href = "#";
+      a.textContent = "عرض التقييم ↗";
+
+      a.addEventListener("click", event => {
+        event.preventDefault();
+
+        $("imageModalTitle").textContent = assessment.title;
+        $("imageModalBody").replaceChildren();
+
+        assessment.images.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = assessment.title;
+          img.loading = "lazy";
+          $("imageModalBody").append(img);
+        });
+
+        $("imageModal").classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      card.append(tag, title, p, a);
+      container.append(card);
+    });
+  };
+
+  renderSubject(CLASS_ASSESSMENTS.math, "classMathAssessments");
+  renderSubject(CLASS_ASSESSMENTS.english, "classEnglishAssessments");
+
+  filterClassAssessments();
+
+  const toggle = $("classAssessmentsToggle");
+  const arrow = $("classAssessmentsArrow");
+
+  const subjectFilter = $("classSubjectFilter").value;
+  const weekFilter = $("classWeekFilter").value;
+
+  const total = Object.values(CLASS_ASSESSMENTS)
+    .flat()
+    .filter(assessment =>
+      !weekFilter || String(assessment.week) === weekFilter
+    )
+    .filter(assessment =>
+      !subjectFilter ||
+      (subjectFilter === "math" && assessment.subject === "الرياضيات") ||
+      (subjectFilter === "english" && assessment.subject === "الإنجليزي")
+    ).length;
+
+  toggle.hidden = Boolean(subjectFilter || weekFilter) || total <= 2;
+
+  if (total <= 2) classAssessmentsExpanded = false;
+
+  toggle.classList.toggle("expanded", classAssessmentsExpanded);
+  toggle.setAttribute("aria-expanded", String(classAssessmentsExpanded));
+  toggle.setAttribute(
+    "aria-label",
+    classAssessmentsExpanded ? "تصغير قائمة التقييمات" : "عرض باقي التقييمات"
+  );
+
+  arrow.textContent = classAssessmentsExpanded ? "اعرض أقل" : "اعرض أكثر";
+}
+
+
+function filterClassAssessments() {
+
+  const subjectFilter = document.getElementById("classSubjectFilter").value;
+  const weekFilter = document.getElementById("classWeekFilter").value;
+
+  const cards = document.querySelectorAll(
+    "#classAssessments .subject-card"
+  );
+
+  let total = 0;
+
+  cards.forEach(card => {
+
+    const subject = card.dataset.subject;
+    const container = card.querySelector(
+      subject === "math"
+        ? "#classMathAssessments"
+        : "#classEnglishAssessments"
+    );
+
+    const items = container.querySelectorAll(".item");
+
+    let visibleCount = 0;
+
+    items.forEach(item => {
+
+      const weekText = item.querySelector(".muted").textContent;
+      const matchesWeek =
+        !weekFilter || weekText.includes("الأسبوع " + weekFilter + " ");
+
+      const show =
+        matchesWeek &&
+        (!subjectFilter || subjectFilter === subject);
+
+      item.hidden = !show;
+
+      if (show) visibleCount++;
+    });
+
+    card.hidden = visibleCount === 0;
+    total += visibleCount;
+
+  });
+
+  document.getElementById("classAssessmentCount").textContent =
+    `${total} تقييم`;
+
+  document.getElementById("classAssessmentEmpty").hidden =
+    total > 0;
+}
+
+
+
+document.getElementById("classSubjectFilter")
+  .addEventListener("change", filterClassAssessments);
+
+document.getElementById("classWeekFilter")
+  .addEventListener("change", filterClassAssessments);
+
+function toggleClassAssessment(containerId, index) {
+  const container = document.getElementById(containerId);
+  const item = container.children[index];
+  const images = item.querySelector(".class-assessment-images");
+  const arrow = item.querySelector(".assessment-arrow");
+
+  images.hidden = !images.hidden;
+  arrow.textContent = images.hidden ? "⌄" : "⌃";
+}
+
+document.getElementById("classSubjectFilter")
+  .addEventListener("change", filterClassAssessments);
+
+renderClassAssessments();
+
+renderClassAssessments();
 
 const REGISTER_URL = "https://script.google.com/macros/s/AKfycby2wip6iCCub8adBB3f9_JBkSYoooa9H1N5uqogoutjEqlWbUJvVtLbWnH6qPA0T7n2/exec";
 
@@ -2683,7 +3283,7 @@ $("sidebarToggle").addEventListener("click",()=>{
 });
 /* تحديث القسم النشط أثناء التمرير */
 const sections = document.querySelectorAll(
- "#teachers, #numbers, #timetable, #books, #files"
+ "#teachers, #numbers, #timetable, #books, #files, #classAssessments"
 );
 
 const observer = new IntersectionObserver(entries => {
@@ -2747,7 +3347,7 @@ $("themeToggle").addEventListener("click",()=>{
 const words = Array.from({length: 11}, (_, i) => String(i));
 
 /* تجهيز فلتر الأسابيع */
-for(let i=1;i<=9;i++){
+for(let i=1;i<=10;i++){
  $("filterWeek").add(
   new Option(String(i),String(i))
  );
@@ -2829,9 +3429,27 @@ function createCustomFilter(selectId,containerId){
  update();
 }
 
+const classWeeks = [
+  ...new Set(
+    Object.values(CLASS_ASSESSMENTS)
+      .flat()
+      .map(assessment => assessment.week)
+      .filter(week => week !== undefined && week !== null)
+  )
+].sort((a, b) => a - b);
+
+classWeeks.forEach(week => {
+  $("classWeekFilter").add(
+    new Option(`الأسبوع ${week}`, String(week))
+  );
+});
+
 createCustomFilter("filterWeek","weekDropdown");
 createCustomFilter("filterSubject","subjectDropdown");
 createCustomFilter("bookSubjectFilter","bookSubjectDropdown");
+createCustomFilter("classWeekFilter", "classWeekDropdown");
+createCustomFilter("classSubjectFilter","classSubjectDropdown");
+
 
 /* إغلاق القوائم عند الضغط خارجها */
 document.addEventListener("click",event=>{
@@ -2842,80 +3460,134 @@ document.addEventListener("click",event=>{
   });
  }
 });
+
 /* عرض التقييمات */
-function renderFiles(){
+let filesExpanded = false;
 
- const week=$("filterWeek").value;
- const subject=$("filterSubject").value;
+function renderFiles() {
 
- const found=FILES.filter(f=>
-  (!week||String(f.week)===week)&&
-  (!subject||f.subject===subject)
+ const week = $("filterWeek").value;
+ const subject = $("filterSubject").value;
+
+ const found = FILES.filter(f =>
+  (!week || String(f.week) === week) &&
+  (!subject || f.subject === subject)
  );
 
- $("items").replaceChildren();
+ const container = $("items");
+ const toggle = $("filesToggle");
+ const arrow = $("filesArrow");
 
- $("count").textContent="عدد الملفات المعروضة: "+found.length;
+ container.replaceChildren();
 
-$("empty").textContent =
+const displayedCount = week || subject || filesExpanded
+  ? found.length
+  : Math.min(found.length, 2);
+
+$("count").textContent =
+  "عدد الملفات المعروضة: " + displayedCount;
+
+ $("empty").textContent =
   "لا توجد تقييمات لهذه المادة في هذا الأسبوع حتى الآن.";
 
-$("empty").hidden = found.length > 0;
+ $("empty").hidden = found.length > 0;
 
- found.forEach(f=>{
+ if (found.length === 0) {
+  toggle.hidden = true;
+  filesExpanded = false;
+  return;
+ }
 
-  const card=document.createElement("article");
-  card.className="item";
+ toggle.hidden = Boolean(week || subject) || found.length <= 2;
 
-  const tag=document.createElement("span");
-  tag.className="tag";
-  tag.textContent=f.subject;
+ if (found.length <= 2) {
+  filesExpanded = false;
+ }
 
-  const title=document.createElement("h3");
-  title.textContent=f.title;
+ const visibleFiles = week || subject || filesExpanded
+  ? found
+  : found.slice(0, 2);
 
-  const p=document.createElement("p");
-  p.className="muted";
-  p.textContent="الأسبوع "+f.week+" • ملف PDF";
+ visibleFiles.forEach(f => {
 
-  const a=document.createElement("a");
+  const card = document.createElement("article");
+  card.className = "item";
 
-  if(f.images){
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.textContent = f.subject;
 
-   a.href="#";
-   a.textContent="عرض التقييم ↗";
+  const title = document.createElement("h3");
+  title.textContent = f.title;
 
-   a.addEventListener("click",event=>{
+  const p = document.createElement("p");
+  p.className = "muted";
+  p.textContent = "الأسبوع " + f.week + " • ملف PDF";
+
+  const a = document.createElement("a");
+
+  if (f.images) {
+
+   a.href = "#";
+   a.textContent = "عرض التقييم ↗";
+
+   a.addEventListener("click", event => {
     event.preventDefault();
 
-    $("imageModalTitle").textContent=f.title;
+    $("imageModalTitle").textContent = f.title;
     $("imageModalBody").replaceChildren();
 
-    f.images.forEach(src=>{
-     const img=document.createElement("img");
-     img.src=src;
-     img.alt=f.title;
-     img.loading="lazy";
+    f.images.forEach(src => {
+     const img = document.createElement("img");
+     img.src = src;
+     img.alt = f.title;
+     img.loading = "lazy";
      $("imageModalBody").append(img);
     });
 
     $("imageModal").classList.add("active");
-    document.body.style.overflow="hidden";
+    document.body.style.overflow = "hidden";
    });
 
-  }else{
+  } else {
 
-   a.href=f.file;
-   a.target="_blank";
-   a.rel="noopener noreferrer";
-   a.textContent="فتح ملف PDF ↗";
+   a.href = f.file;
+   a.target = "_blank";
+   a.rel = "noopener noreferrer";
+   a.textContent = "فتح ملف PDF ↗";
 
   }
 
-  card.append(tag,title,p,a);
-  $("items").append(card);
+  card.append(tag, title, p, a);
+  container.append(card);
+
  });
+
+ toggle.classList.toggle("expanded", filesExpanded);
+
+ toggle.setAttribute(
+  "aria-expanded",
+  String(filesExpanded)
+ );
+
+ toggle.setAttribute(
+  "aria-label",
+  filesExpanded ? "تصغير قائمة التقييمات" : "عرض باقي التقييمات"
+ );
+
+ arrow.textContent = filesExpanded ? "اعرض أقل" : "اعرض أكثر";
 }
+
+
+$("filesToggle").addEventListener("click", () => {
+ filesExpanded = !filesExpanded;
+ renderFiles();
+});
+
+$("classAssessmentsToggle").addEventListener("click", () => {
+  classAssessmentsExpanded = !classAssessmentsExpanded;
+  renderClassAssessments();
+});
 
 $("closeImageModal").addEventListener("click",()=>{
  $("imageModal").classList.remove("active");
@@ -2984,13 +3656,13 @@ function renderBooks() {
     const title = document.createElement("h3");
     title.textContent = book.title;
 
-    const link = document.createElement("a");
-    link.href = book.file;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "فتح الكتاب ↗";
+  const link = document.createElement("a");
+link.href = book.file;
+link.target = "_blank";
+link.rel = "noopener noreferrer";
+link.textContent = "فتح الكتاب ↗";
 
-    card.append(icon, tag, title, link);
+card.append(icon, tag, title, link);
     container.append(card);
   });
 
