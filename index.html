@@ -1967,7 +1967,655 @@ footer {
  }
 }
 
+.user-greeting {
+  font-size: clamp(23px, 2.6vw, 29px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.7;
+  margin: 16px 0;
+  text-align: center;
+  animation: greetingFloat 2.5s ease-in-out infinite;
+}
 
+@keyframes greetingFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+/* ===== 3D EXPERIENCE ===== */
+
+/* تجهيز العناصر لتأثير العمق */
+.teacher,
+.item,
+.days button,
+.custom-filter > button,
+.theme {
+  transform-style: preserve-3d;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+/* تأثير 3D للكروت */
+@media (hover: hover) and (pointer: fine) {
+
+  .teacher:hover,
+  .item:hover {
+    transform: perspective(900px)
+      rotateX(2deg)
+      rotateY(-2deg)
+      translateY(-6px)
+      scale(1.015);
+
+    box-shadow:
+      0 18px 35px rgba(40, 55, 110, .17),
+      0 5px 12px rgba(40, 55, 110, .08);
+  }
+
+  /* تأثير أزرار الأيام */
+  .days button:hover {
+    transform: perspective(500px)
+      rotateX(8deg)
+      translateY(-4px);
+
+    box-shadow: 0 9px 18px rgba(57, 121, 185, .22);
+  }
+
+  /* الفلاتر */
+  .custom-filter > button:hover {
+    transform: perspective(600px)
+      rotateX(4deg)
+      translateY(-3px);
+
+    box-shadow: 0 12px 22px rgba(55, 75, 150, .16);
+  }
+
+  /* زر الوضع الليلي */
+  .theme:hover {
+    transform: perspective(600px)
+      rotateX(5deg)
+      translateY(-4px);
+
+    box-shadow: 0 14px 28px rgba(15, 45, 75, .22);
+  }
+
+}
+
+/* إحساس الضغط عند النقر */
+.teacher:active,
+.item:active,
+.days button:active,
+.custom-filter > button:active,
+.theme:active {
+  transform: scale(.98);
+}
+
+/* دعم تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .teacher,
+  .item,
+  .days button,
+  .custom-filter > button,
+  .theme {
+    transition: none !important;
+  }
+}
+
+/* ===== ظهور العناصر أثناء التمرير ===== */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(35px) scale(.97);
+  filter: blur(5px);
+
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.2, .7, .2, 1),
+    filter .7s ease;
+
+  will-change: opacity, transform, filter;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+
+/* ==================================
+   MODERN WELCOME SCREEN
+================================== */
+
+.splash {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(74, 190, 255, .24), transparent 32%),
+    radial-gradient(circle at 85% 75%, rgba(173, 105, 255, .27), transparent 35%),
+    linear-gradient(125deg, #101b3d, #233d78, #493b87, #12647e);
+
+  background-size: 180% 180%;
+  animation: welcomeAurora 14s ease infinite;
+}
+
+@keyframes welcomeAurora {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* الإضاءة المتحركة */
+.splash::before,
+.splash::after {
+  width: clamp(280px, 42vw, 550px);
+  height: clamp(280px, 42vw, 550px);
+  border-radius: 50%;
+  filter: blur(35px);
+  opacity: .7;
+}
+
+.splash::before {
+  background: radial-gradient(
+    circle,
+    rgba(73, 190, 255, .45),
+    transparent 68%
+  );
+  animation: welcomeOrbOne 13s ease-in-out infinite alternate;
+}
+
+.splash::after {
+  background: radial-gradient(
+    circle,
+    rgba(174, 105, 255, .4),
+    transparent 68%
+  );
+  animation: welcomeOrbTwo 16s ease-in-out infinite alternate;
+}
+
+@keyframes welcomeOrbOne {
+  from { transform: translate(0, 0) scale(.9); }
+  to { transform: translate(-55px, 45px) scale(1.2); }
+}
+
+@keyframes welcomeOrbTwo {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(55px, -40px) scale(1.2); }
+}
+
+/* بطاقة الترحيب الزجاجية */
+.splash-content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 650px);
+  padding: clamp(28px, 5vw, 48px) 24px;
+
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 30px;
+
+  background: rgba(255,255,255,.09);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+/* أيقونة المكتبة */
+.splash-logo {
+  width: 108px;
+  height: 108px;
+  border-radius: 30px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.24),
+    rgba(255,255,255,.07)
+  );
+
+  border: 1px solid rgba(255,255,255,.35);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.2),
+    inset 0 1px 8px rgba(255,255,255,.2);
+
+  animation: logoFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* عنوان الترحيب */
+.splash h1 {
+  color: #fff;
+  font-weight: 900;
+  line-height: 1.5;
+  text-shadow: 0 5px 25px rgba(0,0,0,.2);
+}
+
+.splash h4 {
+  margin: 8px 0 25px;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* زر ابدأ الآن */
+.start-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-width: 190px;
+  padding: 15px 38px;
+
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #fff, #dceaff);
+  color: #263b7a;
+
+  font-size: 18px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 0 #a5b4fc,
+    0 15px 30px rgba(0,0,0,.22);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+/* لمعة تمر على الزر */
+.start-btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -120%;
+
+  width: 65%;
+  height: 100%;
+
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255,255,255,.85),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: left .65s ease;
+}
+
+.start-btn:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 0 #a5b4fc,
+    0 20px 35px rgba(0,0,0,.25);
+
+  background: linear-gradient(135deg, #fff, #e9ddff);
+}
+
+.start-btn:hover::before {
+  left: 150%;
+}
+
+/* إحساس الضغط الحقيقي */
+.start-btn:active {
+  transform: translateY(5px) scale(.97);
+
+  box-shadow:
+    0 2px 0 #a5b4fc,
+    0 5px 12px rgba(0,0,0,.2);
+}
+
+.start-btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 5px;
+}
+
+
+/* ==================================
+   MODERN ANIMATED HEADER
+================================== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      120deg,
+      #142b50,
+      #354a91,
+      #60458e,
+      #176b88
+    );
+
+  background-size: 300% 300%;
+  animation: headerGradient 18s ease infinite;
+}
+
+@keyframes headerGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* إضاءات الهيدر */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::before {
+  width: 360px;
+  height: 360px;
+  top: -210px;
+  right: 8%;
+
+  background: radial-gradient(
+    circle,
+    rgba(104, 190, 255, .3),
+    transparent 70%
+  );
+
+  animation: headerOrb 12s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  width: 320px;
+  height: 320px;
+  bottom: -220px;
+  left: 12%;
+
+  background: radial-gradient(
+    circle,
+    rgba(194, 130, 255, .28),
+    transparent 70%
+  );
+
+  animation: headerOrb 15s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes headerOrb {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(35px, -20px) scale(1.25); }
+}
+
+/* إبقاء محتوى الهيدر فوق الإضاءة */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* الوضع الليلي */
+:root[data-theme="dark"] .hero {
+  background:
+    linear-gradient(
+      120deg,
+      #101a36,
+      #252d68,
+      #443269,
+      #10445e
+    );
+
+  background-size: 300% 300%;
+}
+
+/* الموبايل */
+@media (max-width: 600px) {
+  .splash-content {
+    padding: 30px 16px;
+    border-radius: 24px;
+  }
+
+  .splash-logo {
+    width: 90px;
+    height: 90px;
+    font-size: 42px;
+  }
+
+  .start-btn {
+    width: min(100%, 230px);
+  }
+}
+
+/* تقليل الحركة عند الحاجة */
+@media (prefers-reduced-motion: reduce) {
+  .splash,
+  .splash::before,
+  .splash::after,
+  .splash-logo,
+  .hero,
+  .hero::before,
+  .hero::after {
+    animation: none !important;
+  }
+
+  .start-btn {
+    transition: none;
+  }
+}
+
+.start-btn:hover {
+  background: linear-gradient(135deg, #ffffff, #e9ddff);
+  color: #263b7a !important;
+  text-shadow: none;
+}
+
+.start-btn:active {
+  color: #263b7a !important;
+}
+
+
+/* From Uiverse.io by gustavofusco - https://uiverse.io/gustavofusco/rare-pug-90
+MIT License, Copyright (c) gustavofusco (Gustavo Sperandio) */
+
+/* Full screen loading */
+.pencil-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #5146e5;
+}
+
+.pencil-loading.active {
+  display: flex;
+}
+
+.intro-pencil {
+  display: block;
+  width: 10em;
+  height: 10em;
+}
+
+.intro-pencil__body1,
+.intro-pencil__body2,
+.intro-pencil__body3,
+.intro-pencil__eraser,
+.intro-pencil__eraser-skew,
+.intro-pencil__point,
+.intro-pencil__rotate,
+.intro-pencil__stroke {
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.intro-pencil__body1,
+.intro-pencil__body2,
+.intro-pencil__body3 {
+  transform: rotate(-90deg);
+}
+
+.intro-pencil__body1 {
+  animation-name: introPencilBody1;
+}
+
+.intro-pencil__body2 {
+  animation-name: introPencilBody2;
+}
+
+.intro-pencil__body3 {
+  animation-name: introPencilBody3;
+}
+
+.intro-pencil__eraser {
+  animation-name: introPencilEraser;
+  transform: rotate(-90deg) translate(49px,0);
+}
+
+.intro-pencil__eraser-skew {
+  animation-name: introPencilEraserSkew;
+  animation-timing-function: ease-in-out;
+}
+
+.intro-pencil__point {
+  animation-name: introPencilPoint;
+  transform: rotate(-90deg) translate(49px,-30px);
+}
+
+.intro-pencil__rotate {
+  animation-name: introPencilRotate;
+}
+
+.intro-pencil__stroke {
+  animation-name: introPencilStroke;
+  transform: translate(100px,100px) rotate(-113deg);
+}
+
+@keyframes introPencilBody1 {
+  from, to {
+    stroke-dashoffset: 351.86;
+    transform: rotate(-90deg);
+  }
+  50% {
+    stroke-dashoffset: 150.8;
+    transform: rotate(-225deg);
+  }
+}
+
+@keyframes introPencilBody2 {
+  from, to {
+    stroke-dashoffset: 406.84;
+    transform: rotate(-90deg);
+  }
+  50% {
+    stroke-dashoffset: 174.36;
+    transform: rotate(-225deg);
+  }
+}
+
+@keyframes introPencilBody3 {
+  from, to {
+    stroke-dashoffset: 296.88;
+    transform: rotate(-90deg);
+  }
+  50% {
+    stroke-dashoffset: 127.23;
+    transform: rotate(-225deg);
+  }
+}
+
+@keyframes introPencilEraser {
+  from, to {
+    transform: rotate(-45deg) translate(49px,0);
+  }
+  50% {
+    transform: rotate(0deg) translate(49px,0);
+  }
+}
+
+@keyframes introPencilEraserSkew {
+  from, 32.5%, 67.5%, to {
+    transform: skewX(0);
+  }
+  35%, 65% {
+    transform: skewX(-4deg);
+  }
+  37.5%, 62.5% {
+    transform: skewX(8deg);
+  }
+  40%, 45%, 50%, 55%, 60% {
+    transform: skewX(-15deg);
+  }
+  42.5%, 47.5%, 52.5%, 57.5% {
+    transform: skewX(15deg);
+  }
+}
+
+@keyframes introPencilPoint {
+  from, to {
+    transform: rotate(-90deg) translate(49px,-30px);
+  }
+  50% {
+    transform: rotate(-225deg) translate(49px,-30px);
+  }
+}
+
+@keyframes introPencilRotate {
+  from {
+    transform: translate(100px,100px) rotate(0);
+  }
+  to {
+    transform: translate(100px,100px) rotate(720deg);
+  }
+}
+
+@keyframes introPencilStroke {
+  from {
+    stroke-dashoffset: 439.82;
+    transform: translate(100px,100px) rotate(-113deg);
+  }
+  50% {
+    stroke-dashoffset: 164.93;
+    transform: translate(100px,100px) rotate(-113deg);
+  }
+  75%, to {
+    stroke-dashoffset: 439.82;
+    transform: translate(100px,100px) rotate(112deg);
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .pencil-loading {
+    background: #121426;
+  }
+}
 
 
 </style>
@@ -1990,6 +2638,76 @@ footer {
 
  </div>
 </div>
+
+
+<!-- From Uiverse.io by gustavofusco - https://uiverse.io/gustavofusco/rare-pug-90
+MIT License, Copyright (c) gustavofusco (Gustavo Sperandio) -->
+
+<div id="pencilLoading" class="pencil-loading">
+  <svg xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 200 200"
+       class="intro-pencil">
+
+    <defs>
+      <clipPath id="intro-pencil-eraser">
+        <rect height="30" width="30" ry="5" rx="5"></rect>
+      </clipPath>
+    </defs>
+
+    <circle transform="rotate(-113,100,100)"
+      stroke-linecap="round"
+      stroke-dashoffset="439.82"
+      stroke-dasharray="439.82 439.82"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none" r="70"
+      class="intro-pencil__stroke"></circle>
+
+    <g transform="translate(100,100)" class="intro-pencil__rotate">
+      <g fill="none">
+        <circle transform="rotate(-90)"
+          stroke-dashoffset="402"
+          stroke-dasharray="402.12 402.12"
+          stroke-width="30"
+          stroke="hsl(223,90%,50%)"
+          r="64" class="intro-pencil__body1"></circle>
+
+        <circle transform="rotate(-90)"
+          stroke-dashoffset="465"
+          stroke-dasharray="464.96 464.96"
+          stroke-width="10"
+          stroke="hsl(223,90%,60%)"
+          r="74" class="intro-pencil__body2"></circle>
+
+        <circle transform="rotate(-90)"
+          stroke-dashoffset="339"
+          stroke-dasharray="339.29 339.29"
+          stroke-width="10"
+          stroke="hsl(223,90%,40%)"
+          r="54" class="intro-pencil__body3"></circle>
+      </g>
+
+      <g transform="rotate(-90) translate(49,0)" class="intro-pencil__eraser">
+        <g class="intro-pencil__eraser-skew">
+          <rect height="30" width="30" ry="5" rx="5" fill="hsl(223,90%,70%)"></rect>
+          <rect clip-path="url(#intro-pencil-eraser)" height="30" width="5" fill="hsl(223,90%,60%)"></rect>
+          <rect height="20" width="30" fill="hsl(223,10%,90%)"></rect>
+          <rect height="20" width="15" fill="hsl(223,10%,70%)"></rect>
+          <rect height="20" width="5" fill="hsl(223,10%,80%)"></rect>
+          <rect height="2" width="30" y="6" fill="hsla(223,10%,10%,0.2)"></rect>
+          <rect height="2" width="30" y="13" fill="hsla(223,10%,10%,0.2)"></rect>
+        </g>
+      </g>
+
+      <g transform="rotate(-90) translate(49,-30)" class="intro-pencil__point">
+        <polygon points="15 0,30 30,0 30" fill="hsl(33,90%,70%)"></polygon>
+        <polygon points="15 0,6 30,0 30" fill="hsl(33,90%,50%)"></polygon>
+        <polygon points="15 0,20 10,10 10" fill="hsl(223,10%,10%)"></polygon>
+      </g>
+    </g>
+  </svg>
+</div>
+
 
 <div id="studentRegister" class="student-register" hidden>
   <div class="student-register-box">
@@ -3330,8 +4048,39 @@ if (savedStudentName) {
   });
 }
 
-$("startBtn").addEventListener("click",()=>{
+
+$("startBtn").addEventListener("click", () => {
+  const btn = $("startBtn");
+
+  if (btn.disabled) return;
+
+  btn.disabled = true;
+
+  // إخفاء شاشة الترحيب
   $("splash").classList.add("is-hidden");
+
+  // إظهار شاشة تحميل القلم
+  $("pencilLoading").classList.add("active");
+
+  setTimeout(() => {
+    $("pencilLoading").classList.remove("active");
+
+    // نفس وظيفة تسجيل الطالب الأصلية
+    if (
+      !localStorage.getItem("studentName") ||
+      localStorage.getItem("studentPhone") === null
+    ) {
+      $("studentName").value =
+        localStorage.getItem("studentName") || "";
+
+      $("studentPhone").value =
+        localStorage.getItem("studentPhone") || "";
+
+      $("studentRegister").hidden = false;
+    }
+  }, 3000);
+});
+
 
 if (
   !localStorage.getItem("studentName") ||
@@ -3341,7 +4090,6 @@ if (
   $("studentPhone").value = localStorage.getItem("studentPhone") || "";
   $("studentRegister").hidden = false;
 }
-});
 
 $("studentRegisterForm").addEventListener("submit", async (event)=>{
   event.preventDefault();
@@ -4001,6 +4749,57 @@ renderTimetable();
   greeting.textContent = `مرحباً، ${name}`;
  }
 })();
+
+/* ===== تشغيل ظهور العناصر أثناء التمرير ===== */
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+function observeRevealElements(container) {
+  if (container.nodeType !== 1) return;
+
+  const elements = [];
+
+  if (container.matches(".panel, .teacher, .item")) {
+    elements.push(container);
+  }
+
+  elements.push(
+    ...container.querySelectorAll(".panel, .teacher, .item")
+  );
+
+  elements.forEach(element => {
+    if (!element.classList.contains("reveal-on-scroll")) {
+      element.classList.add("reveal-on-scroll");
+      revealObserver.observe(element);
+    }
+  });
+}
+
+/* العناصر الموجودة بالفعل */
+observeRevealElements(document.body);
+
+/* متابعة أي كروت جديدة يضيفها الموقع */
+const revealMutationObserver = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    mutation.addedNodes.forEach(node => {
+      observeRevealElements(node);
+    });
+  });
+});
+
+revealMutationObserver.observe(document.body, {
+  childList: true,
+  subtree: true
+});
 
 </script>
 </body>
