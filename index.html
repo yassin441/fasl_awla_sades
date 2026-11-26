@@ -1909,6 +1909,60 @@ footer {
 }
 
 
+/* ترحيب المستخدم */
+.hero-heading {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 15px;
+}
+
+.user-greeting {
+ display: inline-flex;
+ align-items: center;
+ gap: 8px;
+ padding: 10px 18px;
+ border: 1px solid rgba(255,255,255,.35);
+ border-radius: 14px;
+ background: linear-gradient(135deg, #ffffff30, #ffffff12);
+ color: white;
+ font-size: 17px;
+ font-weight: bold;
+ box-shadow: 0 4px 15px #00000020;
+ backdrop-filter: blur(8px);
+ transition: .25s ease;
+}
+
+.user-greeting::before {
+ content: "👋";
+ font-size: 20px;
+}
+
+.user-greeting:hover {
+ transform: translateY(-2px);
+ background: linear-gradient(135deg, #ffffff40, #ffffff20);
+}
+
+/* الموبايل */
+@media(max-width:600px){
+ .hero-heading {
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+ }
+
+ .user-greeting {
+  font-size: 15px;
+  padding: 8px 15px;
+ }
+}
+
+ .hero .theme {
+  margin-top: 12px;
+ }
+
+
+
 </style>
 </head>
 
@@ -2012,12 +2066,20 @@ footer {
 
 <header class="hero">
  <div class="hero-inner">
-  <h1>فصل أولى سادس</h1>
+
+  <div class="hero-heading">
+   <h1>فصل أولى سادس</h1>
+   <div id="userGreeting" class="user-greeting"></div>
+  </div>
+
   <p>كل ملخصاتك وتقييماتك وملفاتك الدراسية في مكان واحد.</p>
-  <button class="theme" id="themeToggle" type="button">🌙 الوضع الليلي</button>
+
+  <button class="theme" id="themeToggle" type="button">
+   🌙 الوضع الليلي
+  </button>
+
  </div>
 </header>
-
 <main class="wrap">
 
  <section class="panel" id="teachers">
@@ -2176,7 +2238,7 @@ footer {
 
  </div>
 </div>
-<footer>تم انشاء هذا الموقع بواسطة <strong>ياسين هيثم</strong> © 2026</footer>
+<footer>تم برمجة هذا الموقع بواسطة <strong>ياسين هيثم</strong> © 2026</footer>
 
 </div>
 
@@ -3922,6 +3984,15 @@ function renderTimetable(){
 }
 
 renderTimetable();
+
+(function(){
+ const greeting = document.getElementById("userGreeting");
+ const name = localStorage.getItem("studentName");
+
+ if(greeting && name){
+  greeting.textContent = `مرحباً، ${name}`;
+ }
+})();
 
 </script>
 </body>
