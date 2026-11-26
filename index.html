@@ -403,6 +403,21 @@ th,td{padding:10px;border-bottom:1px solid var(--line)}
 th{background:#eeecff;color:#3730a3}
 footer{text-align:center;padding:20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
 
+table {
+  width: 100%;
+  min-width: 480px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: right;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+  white-space: normal;
+}
+
 @media(max-width:760px){
  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .items{grid-template-columns:1fr}
@@ -1913,23 +1928,18 @@ footer {
 .hero-heading {
  display: flex;
  align-items: center;
- justify-content: space-between;
- gap: 15px;
+ justify-content: center;
 }
 
 .user-greeting {
  display: inline-flex;
  align-items: center;
+ justify-content: center;
  gap: 8px;
- padding: 10px 18px;
- border: 1px solid rgba(255,255,255,.35);
- border-radius: 14px;
- background: linear-gradient(135deg, #ffffff30, #ffffff12);
+ margin: 8px 0 12px;
  color: white;
  font-size: 17px;
  font-weight: bold;
- box-shadow: 0 4px 15px #00000020;
- backdrop-filter: blur(8px);
  transition: .25s ease;
 }
 
@@ -1938,28 +1948,25 @@ footer {
  font-size: 20px;
 }
 
-.user-greeting:hover {
- transform: translateY(-2px);
- background: linear-gradient(135deg, #ffffff40, #ffffff20);
+
+/* توسيط الهيدر */
+.hero-inner {
+ text-align: center;
+}
+
+/* زر الوضع */
+.hero .theme {
+ margin-top: 16px;
 }
 
 /* الموبايل */
-@media(max-width:600px){
- .hero-heading {
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
- }
-
+@media(max-width:600px) {
  .user-greeting {
   font-size: 15px;
   padding: 8px 15px;
  }
 }
 
- .hero .theme {
-  margin-top: 12px;
- }
 
 
 
@@ -2004,7 +2011,7 @@ footer {
   type="tel"
   id="studentPhone"
   placeholder="رقم التليفون (اختياري)"
-  minlenght="11"
+  minlength="11"
   maxlength="11"
   inputmode="tel"
 >
@@ -2069,8 +2076,9 @@ footer {
 
   <div class="hero-heading">
    <h1>فصل أولى سادس</h1>
-   <div id="userGreeting" class="user-greeting"></div>
   </div>
+
+  <div id="userGreeting" class="user-greeting"></div>
 
   <p>كل ملخصاتك وتقييماتك وملفاتك الدراسية في مكان واحد.</p>
 
@@ -2224,6 +2232,8 @@ footer {
 <div class="empty" id="classAssessmentEmpty" hidden>
   لا توجد تقييمات لهذه المادة في هذا الأسبوع حتى الآن.
 </div>
+
+</section>
 
 </main>
 <div class="image-modal" id="imageModal">
@@ -3300,7 +3310,6 @@ function toggleClassAssessment(containerId, index) {
 
 renderClassAssessments();
 
-renderClassAssessments();
 
 const REGISTER_URL = "https://script.google.com/macros/s/AKfycby2wip6iCCub8adBB3f9_JBkSYoooa9H1N5uqogoutjEqlWbUJvVtLbWnH6qPA0T7n2/exec";
 
@@ -3404,7 +3413,6 @@ document.querySelectorAll(".nav-link").forEach(link=>{
   link.classList.add("active");
 
   if(link.hasAttribute("data-reveal-timetable")){
-   $("timetable").hidden=false;
    renderTimetable();
   }
 
