@@ -1874,6 +1874,41 @@ footer {
   margin-bottom: 0;
 }
 
+
+/* توحيد ألوان روابط فتح الملفات في الموقع */
+
+/* الوضع الفاتح */
+#files .item a,
+#classAssessments .item a,
+#books .book-card a {
+  color: #4338ca !important;
+  transition: color .3s ease, text-shadow .3s ease;
+}
+
+/* Hover في الوضع الفاتح */
+#files .item a:hover,
+#classAssessments .item a:hover,
+#books .book-card a:hover {
+  color: #2563eb !important;
+  text-shadow: 0 0 8px rgba(37, 99, 235, .3);
+}
+
+/* الوضع الداكن */
+:root[data-theme="dark"] #files .item a,
+:root[data-theme="dark"] #classAssessments .item a,
+:root[data-theme="dark"] #books .book-card a {
+  color: #ff91b8 !important;
+}
+
+/* Hover في الوضع الداكن */
+:root[data-theme="dark"] #files .item a:hover,
+:root[data-theme="dark"] #classAssessments .item a:hover,
+:root[data-theme="dark"] #books .book-card a:hover {
+  color: #ffc1d7 !important;
+  text-shadow: 0 0 10px rgba(255, 145, 184, .4);
+}
+
+
 </style>
 </head>
 
@@ -2909,7 +2944,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الرياضيات",
       week: 3,
       images: [
-        "resources/math-W3.jpg",
+        "math-W3.jpg",
       ]
     },
     {
@@ -2917,8 +2952,8 @@ const CLASS_ASSESSMENTS = {
       subject: "الرياضيات",
       week: 4,
       images: [
-        "resources/math-W4-1.jpg",
-        "resources/math-W4-2.jpg",
+        "math-W4-1.jpg",
+        "math-W4-2.jpg",
       ]
     },
     {
@@ -2926,7 +2961,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الرياضيات",
       week: 7,
       images: [
-        "resources/math-W7.jpg",
+        "math-W7.jpg",
       ]
     },
     {
@@ -2934,8 +2969,8 @@ const CLASS_ASSESSMENTS = {
       subject: "الرياضيات",
       week: 8,
       images: [
-        "resources/math-W8-1.jpg",
-        "resources/math-W8-2.jpg",
+        "math-W8-1.jpg",
+        "math-W8-2.jpg",
       ]
     },
     {
@@ -2943,8 +2978,8 @@ const CLASS_ASSESSMENTS = {
       subject: "الرياضيات",
       week: 10,
       images: [
-        "resources/math-W10-1.jpg",
-        "resources/math-W10-2.jpg",
+        "math-W10-1.jpg",
+        "math-W10-2.jpg",
       ]
     },
 
@@ -2957,7 +2992,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 1,
       images: [
-        "resources/English-W1.jpg",
+        "English-W1.jpg",
       ]
     },
     {
@@ -2965,7 +3000,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 2,
       images: [
-        "resources/English-W2.jpg",
+        "English-W2.jpg",
       ]
     },
     {
@@ -2973,7 +3008,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 3,
       images: [
-        "resources/English-W3.jpg",
+        "English-W3.jpg",
       ]
     },
     {
@@ -2981,7 +3016,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 4,
       images: [
-        "resources/English-W4.jpg",
+        "English-W4.jpg",
       ]
     },
     {
@@ -2989,7 +3024,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 5,
       images: [
-        "resources/English-W5.jpg",
+        "English-W5.jpg",
       ]
     },
     {
@@ -2997,7 +3032,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 7,
       images: [
-        "resources/English-W7.jpg",
+        "English-W7.jpg",
       ]
     },
     {
@@ -3005,7 +3040,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 8,
       images: [
-        "resources/English W8.jpg",
+        "English W8.jpg",
       ]
     },
     {
@@ -3013,7 +3048,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 9,
       images: [
-        "resources/English-W9.jpg",
+        "English-W9.jpg",
       ]
     },
     {
@@ -3021,7 +3056,7 @@ const CLASS_ASSESSMENTS = {
       subject: "الإنجليزي",
       week: 10,
       images: [
-        "resources/English-W10.jpg",
+        "English-W10.jpg",
       ]
     },
   ]
